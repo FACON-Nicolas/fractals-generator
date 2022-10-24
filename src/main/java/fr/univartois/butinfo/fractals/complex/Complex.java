@@ -59,37 +59,76 @@ public class Complex implements IComplex{
         return new Complex(- realPart, - imaginaryPart);
     }
 
+    /**
+     * Donne le conjugué de ce nombre complexe.
+     *
+     * @return Le conjugué de ce nombre complexe.
+     */
     @Override
     public IComplex conjugate() {
         return new Complex(realPart, - imaginaryPart);
     }
 
+    /**
+     * Ajoute ce nombre complexe à un autre nombre complexe.
+     *
+     * @param other Le nombre complexe à ajouter à ce nombre.
+     *
+     * @return Le résultat de {@code this + other}.
+     */
     @Override
     public IComplex add(IComplex other) {
         return new Complex(realPart + other.getRealPart(), imaginaryPart + other.getImaginaryPart());
     }
 
+    /**
+     * Soustrait un nombre complexe de ce nombre complexe.
+     *
+     * @param other Le nombre complexe à soustraire de ce nombre.
+     *
+     * @return Le résultat de {@code this - other}.
+     */
     @Override
     public IComplex subtract(IComplex other) {
         return new Complex(realPart - other.getRealPart(), imaginaryPart - other.getImaginaryPart());
     }
 
+    /**
+     * Multiplie ce nombre complexe par une valeur réelle.
+     *
+     * @param value La valeur par laquelle multiplier ce nombre.
+     *
+     * @return Le résultat de {@code this * value}.
+     */
     @Override
     public IComplex multiply(double value) {
         return new Complex(realPart * value, imaginaryPart * value);
     }
 
+    /**
+     * Multiplie ce nombre complexe par un autre nombre complexe.
+     *
+     * @param other Le nombre complexe à mulitplier par ce nombre.
+     *
+     * @return Le résultat de {@code this * other}.
+     */
     @Override
     public IComplex multiply(IComplex other) {
         return new Complex(realPart * other.getRealPart() - imaginaryPart * other.getImaginaryPart(), realPart * other.getImaginaryPart() + imaginaryPart * other.getRealPart());
     }
 
+    /**
+     * Divise ce nombre complexe par un autre nombre complexe.
+     *
+     * @param other Le nombre complexe qui divise ce nombre.
+     *
+     * @return Le résultat de {@code this / other}.
+     */
     @Override
     public IComplex divide(IComplex other) {
         IComplex numerateur = multiply(other.conjugate());
-        IComplex denominateur = multiply(other.conjugate());
-        return new Complex(numerateur.getRealPart() / denominateur.getRealPart(),
-                numerateur.getImaginaryPart() / denominateur.getRealPart());
+        double denominateur = Math.pow(other.getRealPart(), 2) + Math.pow(other.getImaginaryPart(), 2);
+        return new Complex(numerateur.getRealPart() / denominateur, numerateur.getImaginaryPart() / denominateur);
     }
 
     @Override
