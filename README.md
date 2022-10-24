@@ -6,16 +6,16 @@
 @startuml
 
 interface IComplex {
-+getRealPart()
-+getImaginaryPart()
-+abs()
-+negate()
-+conjugate()
-+add(IComplex other)
-+substract(IComplex other)
-+multiply(Icomplex other)
-+multiply(double value)
-+divide(Icomplex other)
++{abstract}getRealPart()
++{abstract}getImaginaryPart()
++{abstract}abs()
++{abstract}negate()
++{abstract}conjugate()
++{abstract}add(IComplex other)
++{abstract}substract(IComplex other)
++{abstract}multiply(Icomplex other)
++{abstract}multiply(double value)
++{abstract}divide(Icomplex other)
 }
 
 class Complex {
@@ -24,6 +24,7 @@ class Complex {
 -imaginary
 
 +Complex(int real, int imaginary)
++Complex()
 +getRealPart()
 +getImaginaryPart()
 +abs()
