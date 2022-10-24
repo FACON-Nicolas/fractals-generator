@@ -1,5 +1,51 @@
 # Autour des Fractales
 
+## Diagramme UML
+
+```plantuml
+@startuml
+
+interface IComplex {
++getRealPart()
++getImaginaryPart()
++abs()
++negate()
++conjugate()
++add(IComplex other)
++substract(IComplex other)
++multiply(Icomplex other)
++multiply(double value)
++divide(Icomplex other)
+}
+
+class Complex {
+
+-real
+-imaginary
+
++Complex(int real, int imaginary)
++Complex()
++getRealPart()
++getImaginaryPart()
++abs()
++negate()
++conjugate()
++add(IComplex other)
++substract(IComplex other)
++multiply(Icomplex other)
++multiply(double value)
++divide(Icomplex other)
++toString()
++hashCode()
++equals(Object other)
+
+}
+
+IComplex <|---Complex
+
+@enduml
+```
+
 ## Description
 
 Ce projet fournit une implantation de base pour votre projet de SAÉ S3.A.01.
