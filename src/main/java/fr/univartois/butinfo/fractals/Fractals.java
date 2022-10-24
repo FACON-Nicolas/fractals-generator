@@ -178,21 +178,6 @@ public final class Fractals {
     public void buildFractal() {
         // TODO Ajoutez ici le code pour utiliser votre implantation et créer la fractale.
     }
-
-    /**
-     * créer un nombre complexe à partir de coordonées
-     * 
-     * @param row numéro de ligne du pixel
-     * 
-     * @param column numéro de colonne du pixel
-     * 
-     * @return nombre complexe définissant ce pixel.
-     */
-    public IComplex asComplex(int row, int column) {
-        double re = (column + .5) - (width / 2.);
-        double im = (height / 2.) - (row + .5);
-        return new Complex(re, im);
-    }
     
     /**
      * Exécute l'application depuis la ligne de commande.
