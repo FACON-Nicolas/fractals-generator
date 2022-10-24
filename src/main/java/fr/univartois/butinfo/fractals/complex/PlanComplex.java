@@ -27,6 +27,14 @@ public class PlanComplex implements IPlanComplex {
      */
     private int height;
     
+    /**
+     * 
+     * Crée une nouvelle instance de PlanComplex.
+     * 
+     * @param width longueur plan
+     * 
+     * @param height largeur plan
+     */
     public PlanComplex(int width, int height) {
         this.width = width;
         this.height = height;
