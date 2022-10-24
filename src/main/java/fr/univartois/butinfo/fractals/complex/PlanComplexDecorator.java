@@ -66,11 +66,6 @@ public abstract class PlanComplexDecorator implements IPlanComplex {
         return plan.getHeight();
     }
     
-    /**
-     * methode abstraite, appeléee pour lancer les opérations des décorateurs enfants.
-     */
-    public abstract void operation();
-    
 
 }
 
