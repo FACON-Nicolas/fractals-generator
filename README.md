@@ -4,7 +4,6 @@
 
 ```plantuml
 @startuml
-
 interface IComplex {
 +{abstract}getRealPart()
 +{abstract}getImaginaryPart()
@@ -16,6 +15,24 @@ interface IComplex {
 +{abstract}multiply(Icomplex other)
 +{abstract}multiply(double value)
 +{abstract}divide(Icomplex other)
+}
+
+abstract class ComplexDecorator {
+ +{abstract}operation()
+}
+
+class ComplexTranslationDecorator {
+ + operation()
+ + translation()
+ - CONSTANTE
+ - complex
+}
+
+class ComplexZoomDecorator {
+ + operation()
+ + zoom()
+ - complex
+ - zoom
 }
 
 class Complex {
@@ -41,8 +58,15 @@ class Complex {
 
 }
 
-IComplex <|---Complex
+IComplex <|---[dashed]Complex
+IComplex<|---[dashed]ComplexDecorator
+ComplexDecorator<|---ComplexTranslationDecorator
+ComplexDecorator<|---ComplexZoomDecorator
 
+note "On a choisi un décorateur pour AJOUTER une translation aux nombres complexes" as N1
+note "On a choisi un décorateur pour AJOUTER le zoom aux nombres complexes" as N2
+ComplexTranslationDecorator .. N1
+ComplexZoomDecorator .. N2
 @enduml
 ```
 
