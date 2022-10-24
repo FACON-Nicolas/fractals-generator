@@ -40,8 +40,7 @@ class IComplexTest {
      * @return Le nombre complexe créé.
      */
     private static IComplex createComplex(double realPart, double imaginaryPart) {
-        // TODO Créez ici une instance de votre classe implémentant IComplex.
-        return null;
+        return new Complex(realPart, imaginaryPart);
     }
 
     /**
@@ -255,7 +254,7 @@ class IComplexTest {
 
     /**
      * Méthode de test pour
-     * {@link fr.univartois.butinfo.fractals.complex.IComplex#hashCode()}.
+     * {@link fr.univartois.butinfo.fractals.complex.Complex#hashCode()}.
      */
     @Test
     void testHashCode() {
@@ -278,7 +277,7 @@ class IComplexTest {
 
     /**
      * Méthode de test pour
-     * {@link fr.univartois.butinfo.fractals.complex.IComplex#equals(java.lang.Object)}.
+     * {@link fr.univartois.butinfo.fractals.complex.Complex#equals(java.lang.Object)}.
      */
     @Test
     void testEqualsObject() {
@@ -310,7 +309,7 @@ class IComplexTest {
 
     /**
      * Méthode de test pour
-     * {@link fr.univartois.butinfo.fractals.complex.IComplex#toString()}.
+     * {@link fr.univartois.butinfo.fractals.complex.Complex#toString()}.
      */
     @Test
     void testToString() {
