@@ -24,7 +24,6 @@ class Complex {
 -imaginary
 
 +Complex(int real, int imaginary)
-+Complex()
 +getRealPart()
 +getImaginaryPart()
 +abs()
