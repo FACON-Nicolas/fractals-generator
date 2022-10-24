@@ -17,22 +17,36 @@ interface IComplex {
 +{abstract}divide(Icomplex other)
 }
 
-abstract class ComplexDecorator {
- +{abstract}operation()
+class PlanComplexTranslationDecorator {
+ - constante
+ + PlanComplexTranslationDecorator(constante, plan, width, height)
 }
 
-class ComplexTranslationDecorator {
- + operation()
- + translation()
- - CONSTANTE
- - complex
+class PlanComplexZoomDecorator {
+ - constante
+ + PlanComplexZoomDecorator(constante, plan, width, height)
 }
 
-class ComplexZoomDecorator {
- + operation()
- + zoom()
- - complex
- - zoom
+class PlanComplex {
+ - width
+ - height
+ + PlanComplex(width, height)
+ + asComplex(row, column)
+ + getWidth()
+ + getHeight()
+}
+
+interface IPlanComplex {
+ + {abstract}asComplex(row, column)
+ + {abstract}getWidth()
+ + {abstract}getHeight()
+}
+
+abstract class PlanComplexDecorator {
+ - plan
+ + asComplex(row, column)
+ + getWidth()
+ + getHeight()
 }
 
 class Complex {
@@ -59,14 +73,18 @@ class Complex {
 }
 
 IComplex <|---[dashed]Complex
-IComplex<|---[dashed]ComplexDecorator
-ComplexDecorator<|---ComplexTranslationDecorator
-ComplexDecorator<|---ComplexZoomDecorator
+IPlanComplex<|---[dashed]PlanComplexDecorator
+PlanComplexDecorator<|---PlanComplexTranslationDecorator
+PlanComplexDecorator<|---PlanComplexZoomDecorator
+IPlanComplex<|----[dashed]PlanComplex
+PlanComplexDecorator *-- PlanComplex : use
+PlanComplexZoomDecorator *-- Complex : use
+PlanComplexTranslationDecorator *-- Complex : use
 
 note "On a choisi un décorateur pour AJOUTER une translation aux nombres complexes" as N1
 note "On a choisi un décorateur pour AJOUTER le zoom aux nombres complexes" as N2
-ComplexTranslationDecorator .. N1
-ComplexZoomDecorator .. N2
+PlanComplexTranslationDecorator .. N1
+PlanComplexZoomDecorator .. N2
 @enduml
 ```
 
