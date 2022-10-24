@@ -2,10 +2,10 @@ package fr.univartois.butinfo.fractals;
 
 import fr.univartois.butinfo.fractals.complex.IComplex;
 
+/**
+ * Suis le patron de conception de la stratégie pour représenter les suites.
+ */
 public interface IStrategieSuite {
-
-    // Patron de conception pour les suites générales : stratégie
-
     IComplex derterminerTermeSuivant(IComplex termeAnterieur);
 
 }
