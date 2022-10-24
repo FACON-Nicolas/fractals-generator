@@ -88,6 +88,63 @@ PlanComplexZoomDecorator .. N2
 @enduml
 ```
 
+```plantuml
+@startuml
+
+interface IStrategieSuite {
+ + determinerTermeSuivant(IComplex termeAnterieur) : IComplex
+}
+
+interface Iterator<E> {
+ + {abstract} next() : E
+ + {abstract} hasNext() : boolean
+}
+
+class SuiteIterator {
+ - iterationMax : int
+ - terme : IComplex
+ + SuiteIterator(IStrategie suite, IComplex terme, int iterationMax)
+ + hasNext() : boolean
+ + next() : IComplex
+}
+
+class SuiteMandelbrot {
+ - IComplex z;
+ - maxIteration : int
+ + SuiteMandelbrot(maxIteration, c, z)
+ + determinerTermeSuivant(IComplex termeAnterieur) : IComplex
+ + iterator() : Iterator<IComplex>
+}
+
+class SuiteJulia {
+ - z : IComplex
+ - c : IComplex
+ - maxIteration : int
+ + SuiteJulia(maxIteration, c, z)
+ + determinerTermeSuivant(IComplex terme)
+ + iterator() : Iterator<IComplex>
+}
+
+
+interface Iterable<E> {
+ + {abstract} iterator() : Iterator<E>
+}
+
+SuiteIterator *-- IStrategieSuite : suite
+Iterator <--[dashed] SuiteIterator
+
+SuiteIterator <--[dashed] SuiteMandelbrot
+Iterable <--[dashed] SuiteMandelbrot
+
+SuiteIterator <--[dashed] SuiteJulia
+Iterable <--[dashed] SuiteJulia
+
+SuiteIterator *-- SuiteJulia : iterator
+SuiteIterator *-- SuiteMandelbrot : iterator
+@enduml
+```
+
+
 ## Description
 
 Ce projet fournit une implantation de base pour votre projet de SAÉ S3.A.01.
