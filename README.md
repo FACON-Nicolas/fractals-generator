@@ -137,6 +137,31 @@ class Pixel {
  + setColor(color)
 }
 
+interface IPoint {
+ + getX()
+ + getY()
+ + distance(other: IPoint)
+}
+
+class Point {
+ - x
+ - y
+ + Point(x,y)
+ + getX()
+ + getY()
+ + distance(other : IPoint)
+}
+
+class ComplexAdaptateur {
+ + ComplexAdaptateur(complex)
+ + getX()
+ + getY()
+ + distance(other : IPoint)
+}
+
+IPoint <|---[dashed] ComplexAdaptateur
+IComplex *--- ComplexAdaptateur : - complex
+IPoint <|---[dashed] Point
 IFractalImage *-- Pixel : - image
 SuiteIterator *-- IStrategieSuite : suite
 Iterator <--[dashed] SuiteIterator
