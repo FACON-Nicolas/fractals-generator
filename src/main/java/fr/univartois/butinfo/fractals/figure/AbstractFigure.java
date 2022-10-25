@@ -10,8 +10,6 @@ public abstract class AbstractFigure implements IFigure {
 
     protected final Color color;
 
-    public abstract String getSVG();
-
     public AbstractFigure(int x, int y, Color color) {
         this.x = x;
         this.y = y;
