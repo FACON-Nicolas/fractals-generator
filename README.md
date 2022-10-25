@@ -276,6 +276,30 @@ class SuiteChaotiqueIterator {
  + next()
 }
 
+class SuiteGeneraliseJulia {
+ - maxIteration : int
+ - BinaryOperator<IComplex> function
+ + SuiteGeneraliseJulia(IComplex z, IComplex c, int maxIteration, BinaryOperator<IComplex> fonction)
+ + derterminerTermeSuivant(IComplex termeAnterieur)
+ + iterator()
+}
+
+class SuiteGeneraliseMandelbrot {
+ - maxIteration : int
+ - BinaryOperator<IComplex> function
+ + SuiteGeneraliseMandelbrot(IComplex z, premierTerme, int maxIteration, BinaryOperator<IComplex> fonction)
+ + derterminerTermeSuivant(IComplex termeAnterieur)
+ + iterator()
+}
+
+Iterable <|--[dashed] SuiteGeneraliseJulia
+IStrategieSuite <|--[dashed] SuiteGeneraliseJulia
+SuiteGeneraliseJulia *-- IComplex : - z
+SuiteGeneraliseJulia *-- IComplex : - c
+SuiteGeneraliseMandelbrot *-- IComplex : - z
+SuiteGeneraliseMandelbrot *-- IComplex : - premierTerme
+Iterable <|--[dashed] SuiteGeneraliseMandelbrot
+IStrategieSuite <|--[dashed] SuiteGeneraliseMandelbrot
 SuiteChaotiqueIterator *-- IStrategieSuiteChaotique : - suite
 SuiteChaotiqueIterator *-- IPoint : - point
 Iterator <|--[dashed] IStrategieSuiteChaotique
