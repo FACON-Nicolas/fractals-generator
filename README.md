@@ -159,13 +159,83 @@ class ComplexAdaptateur {
  + distance(other : IPoint)
 }
 
+interface IFigure {
+ + {abstract} getSVG()
+}
+
+abstract class AbstractFigure {
+ - x
+ - y
+ - Color
+ + AbstractFigure(x, y, color)
+}
+
+class FigureRectangle {
+ - width
+ - height
+ + getSVG()
+ + FigureRectangle(x, y, color, width, height)
+}
+
+class FigureCarre {
+ - cote
+ + FigureCote(x, y, color, cote)
+}
+
+class FigureCercle {
+ - rayon
+ + FigureCercle(x, y, color, rayon)
+ + getSVG()
+}
+
+abstract class FigureDecorator {
+ - figure : IFigure
+ + FigureDecorator(figure)
+ + getFigure()
+}
+
+class FigureTransformScaleDecorator {
+ - scale
+ + FigureTransformScaleDecorator(figure, scale=1)
+ + getSVG()
+}
+
+class FigureTransformRotateDecorator {
+ - rotate
+ + FigureTransformScaleDecorator(figure, rotate=0)
+ + getSVG()
+}
+
+class FigureTransformTranslationDecorator {
+ - translateX
+ - translateY
+ + FigureTransformScaleDecorator(figure, translateX, translateY)
+ + getSVG()
+}
+
+class FigureComposite {
+ + getSVG()
+ + add()
+ + remove()
+}
+
+
+IFigure <|--[dashed] FigureDecorator
+IFigure <|--[dashed] FigureComposite
+FigureComposite *-- AbstractFigure : - figures
+FigureDecorator <|--FigureTransformScaleDecorator
+FigureDecorator <|--FigureTransformRotateDecorator
+FigureDecorator <|--FigureTransformTranslationDecorator
+IFigure <|--[dashed] AbstractFigure
+AbstractFigure <|-- FigureRectangle
 IPoint <|---[dashed] ComplexAdaptateur
+AbstractFigure <|-- FigureCercle
 IComplex *--- ComplexAdaptateur : - complex
 IPoint <|---[dashed] Point
 IFractalImage *-- Pixel : - image
 SuiteIterator *-- IStrategieSuite : suite
 Iterator <--[dashed] SuiteIterator
-
+FigureRectangle <|-- FigureCarre
 IFractalImage <--[dashed] AdaptateurImage
 AdaptateurImage *-- BufferedImage : - image
 
