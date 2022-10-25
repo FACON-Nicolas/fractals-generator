@@ -4,18 +4,49 @@
 
 ```plantuml
 @startuml
-
 interface IComplex {
-+getRealPart()
-+getImaginaryPart()
-+abs()
-+negate()
-+conjugate()
-+add(IComplex other)
-+substract(IComplex other)
-+multiply(Icomplex other)
-+multiply(double value)
-+divide(Icomplex other)
++{abstract}getRealPart()
++{abstract}getImaginaryPart()
++{abstract}abs()
++{abstract}negate()
++{abstract}conjugate()
++{abstract}add(IComplex other)
++{abstract}substract(IComplex other)
++{abstract}multiply(Icomplex other)
++{abstract}multiply(double value)
++{abstract}divide(Icomplex other)
+}
+
+class PlanComplexTranslationDecorator {
+ - constante
+ + PlanComplexTranslationDecorator(constante, plan, width, height)
+}
+
+class PlanComplexZoomDecorator {
+ - constante
+ + PlanComplexZoomDecorator(constante, plan, width, height)
+}
+
+class PlanComplex {
+ - width
+ - height
+ + PlanComplex(width, height)
+ + asComplex(row, column)
+ + getWidth()
+ + getHeight()
+}
+
+interface IPlanComplex {
+ + {abstract}asComplex(row, column)
+ + {abstract}getWidth()
+ + {abstract}getHeight()
+}
+
+abstract class PlanComplexDecorator {
+ - plan
+ + asComplex(row, column)
+ + getWidth()
+ + getHeight()
 }
 
 class Complex {
@@ -41,8 +72,19 @@ class Complex {
 
 }
 
-IComplex <|---Complex
+IComplex <|---[dashed]Complex
+IPlanComplex<|---[dashed]PlanComplexDecorator
+PlanComplexDecorator<|---PlanComplexTranslationDecorator
+PlanComplexDecorator<|---PlanComplexZoomDecorator
+IPlanComplex<|----[dashed]PlanComplex
+PlanComplexDecorator *-- PlanComplex : use
+PlanComplexZoomDecorator *-- Complex : use
+PlanComplexTranslationDecorator *-- Complex : use
 
+note "On a choisi un décorateur pour AJOUTER une translation aux nombres complexes" as N1
+note "On a choisi un décorateur pour AJOUTER le zoom aux nombres complexes" as N2
+PlanComplexTranslationDecorator .. N1
+PlanComplexZoomDecorator .. N2
 @enduml
 ```
 
