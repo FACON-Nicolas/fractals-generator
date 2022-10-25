@@ -16,7 +16,7 @@ public class FigureRectangle extends AbstractFigure{
     }
 
     @Override
-    public String getSVG() {
+    public final String getSVG() {
         return "<rect " +
                 "x=\"" + x + "\" " +
                 "y=\"" + y + "\" " +
