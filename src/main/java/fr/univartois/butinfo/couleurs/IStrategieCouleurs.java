@@ -4,4 +4,5 @@ import java.awt.Color;
 public interface IStrategieCouleurs {
 
 	public Color palette(int nbItMax, int nbIterations);
+	
 }
