@@ -15,15 +15,15 @@ package fr.univartois.butinfo.fractals.figure;
  *
  * @version 0.1.0
  */
-public class FigureTransformDecorator extends FigureDecorator {
+public class FigureTransformScaleDecorator extends FigureDecorator {
     
     private double scale;
     
-    public FigureTransformDecorator(IFigure figure) {
+    public FigureTransformScaleDecorator(IFigure figure) {
         this(figure, 1);
     }
     
-    public FigureTransformDecorator(IFigure figure, double scale) {
+    public FigureTransformScaleDecorator(IFigure figure, double scale) {
         super(figure);
         this.scale = scale;
     }
