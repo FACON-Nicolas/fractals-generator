@@ -107,8 +107,42 @@ interface Iterable<E> {
  + {abstract} iterator() : Iterator<E>
 }
 
+class BufferedImage {
+
+}
+
+interface IFractalImage {
+ + {abstract} getHeight()
+ +{abstract} getWidth()
+ + {abstract} getPixel(row, column)
+ + {abstract} setColor(row, column, color)
+ + {abstract} saveAs(path)
+}
+
+class AdaptateurImage {
+  +  getHeight()
+ + getWidth()
+ +  getPixel(row, column)
+ +  setColor(row, column, color)
+ +  saveAs(path)
+}
+
+class Pixel {
+ - row
+ - column
+ + Pixel(image, row, column)
+ + getRow()
+ + getColumn()
+ + getImage()
+ + setColor(color)
+}
+
+IFractalImage *-- Pixel : - image
 SuiteIterator *-- IStrategieSuite : suite
 Iterator <--[dashed] SuiteIterator
+
+IFractalImage <--[dashed] AdaptateurImage
+AdaptateurImage *-- BufferedImage : - image
 
 SuiteIterator <--[dashed] SuiteMandelbrot
 Iterable <--[dashed] SuiteMandelbrot
@@ -121,7 +155,7 @@ SuiteIterator *-- SuiteMandelbrot : iterator
 IComplex *-- SuiteIterator: - terme
 IComplex *-- SuiteJulia : - c
 IComplex *-- SuiteJulia : - z
-IComplex *-- SuiteMandelbrot : -z
+IComplex *-- SuiteMandelbrot : - z
 
 IComplex <|---[dashed]Complex
 IPlanComplex<|---[dashed]PlanComplexDecorator
