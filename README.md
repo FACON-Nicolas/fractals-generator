@@ -219,6 +219,45 @@ class FigureComposite {
  + remove()
 }
 
+interface IStrategieCouleurs {
+ + {abstract} palette(nbItMax, nbIteration) : Color
+}
+
+class PaletteJaune {
+ + palette(nbItMax, nbIteration) : Color
+}
+
+class PaletteRouge {
+ + palette(nbItMax, nbIteration) : Color
+}
+
+abstract class CouleurDecorateur {
+ + CouleurDecorateur(IStrategieCouleurs palette)
+}
+
+class CouleurDecorateurR {
+ + CouleurDecorateurR(IStrategieCouleurs palette)
+ + palette(int nbItMax, int nbIterations)
+}
+
+class CouleurDecorateurV {
+ + CouleurDecorateurV(IStrategieCouleurs palette)
+ + palette(int nbItMax, int nbIterations)
+}
+
+class CouleurDecorateurB {
+ + CouleurDecorateurB(IStrategieCouleurs palette)
+ + palette(int nbItMax, int nbIterations)
+}
+
+IStrategieCouleurs <|--[dashed] PaletteRouge
+IStrategieCouleurs <|--[dashed] PaletteJaune
+IStrategieCouleurs <|--[dashed] CouleurDecorateur
+IStrategieCouleurs *-- CouleurDecorateur : - palette
+
+CouleurDecorateur <|--- CouleurDecorateurR
+CouleurDecorateur <|--- CouleurDecorateurV
+CouleurDecorateur <|--- CouleurDecorateurB
 
 IFigure <|--[dashed] FigureDecorator
 IFigure <|--[dashed] FigureComposite
