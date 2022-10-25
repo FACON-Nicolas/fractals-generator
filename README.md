@@ -250,6 +250,39 @@ class CouleurDecorateurB {
  + palette(int nbItMax, int nbIterations)
 }
 
+interface IStrategieSuiteChaotique {
+ + determinerTermeSuivant(pointAnterieur)
+}
+
+class SuiteChaotiqueCirculaire {
+ - premierPoint
+ - iterationMax
+ + SuiteChaotiqueCirculaire(IPoint premierPoint, int interationMax)
+ + derterminerTermeSuivant(IPoint pointAnterieur)
+ + iterator()
+}
+
+class SuiteChaotiqueFeigenbaum {
+ - premierPoint
+ - iterationMax
+ + SuiteChaotiqueFeigenbaum(IPoint premierPoint, int interationMax)
+ + derterminerTermeSuivant(IPoint pointAnterieur)
+ + iterator()
+}
+
+class SuiteChaotiqueIterator {
+ + SuiteChaotiqueIterator(IStrategieSuiteChaotique suite, int interationMax, IPoint point)
+ + hasNext()
+ + next()
+}
+
+SuiteChaotiqueIterator *-- IStrategieSuiteChaotique : - suite
+SuiteChaotiqueIterator *-- IPoint : - point
+Iterator <|--[dashed] IStrategieSuiteChaotique
+Iterable <|--[dashed] SuiteChaotiqueCirculaire
+IStrategieSuiteChaotique <|--[dashed] SuiteChaotiqueCirculaire
+Iterable <|--[dashed] SuiteChaotiqueFeigenbaum
+IStrategieSuiteChaotique <|--[dashed] SuiteChaotiqueFeigenbaum
 IStrategieCouleurs <|--[dashed] PaletteRouge
 IStrategieCouleurs <|--[dashed] PaletteJaune
 IStrategieCouleurs <|--[dashed] CouleurDecorateur
@@ -299,7 +332,6 @@ IPlanComplex<|----[dashed]PlanComplex
 PlanComplexDecorator *-- PlanComplex : use
 PlanComplexZoomDecorator *-- IComplex : - constante
 PlanComplexTranslationDecorator *-- IComplex : - constante
-
 @enduml
 ```
 
