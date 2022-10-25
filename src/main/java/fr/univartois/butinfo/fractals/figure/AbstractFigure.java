@@ -2,13 +2,13 @@ package fr.univartois.butinfo.fractals.figure;
 
 import java.awt.*;
 
-public abstract class AbstractFigure {
+public abstract class AbstractFigure implements IFigure {
 
     protected final int x;
 
     protected final int y;
 
-    protected final java.awt.Color color;
+    protected final Color color;
 
     public abstract String getSVG();
 
