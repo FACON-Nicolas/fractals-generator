@@ -8,9 +8,11 @@ import java.util.Iterator;
 public class SuiteChaotiqueFeigenbaum implements IStrategieSuiteChaotique, Iterable<IPoint>{
 
     private final IPoint premierPoint;
+    private final int interationMax;
 
-    public SuiteChaotiqueFeigenbaum(IPoint premierPoint) {
+    public SuiteChaotiqueFeigenbaum(IPoint premierPoint, int interationMax) {
         this.premierPoint = premierPoint;
+        this.interationMax = interationMax;
     }
 
     @Override
@@ -23,7 +25,6 @@ public class SuiteChaotiqueFeigenbaum implements IStrategieSuiteChaotique, Itera
 
     @Override
     public Iterator<IPoint> iterator() {
-        // TODO Après la classe Iterator
-        return null;
+        return new SuiteChaotiqueIterator(this, interationMax, premierPoint);
     }
 }
