@@ -18,12 +18,12 @@ interface IComplex {
 }
 
 class PlanComplexTranslationDecorator {
- - constante
+ + asComplex(row, column)
  + PlanComplexTranslationDecorator(constante, plan, width, height)
 }
 
 class PlanComplexZoomDecorator {
- - constante
+ + asComplex(row, column)
  + PlanComplexZoomDecorator(constante, plan, width, height)
 }
 
@@ -43,7 +43,6 @@ interface IPlanComplex {
 }
 
 abstract class PlanComplexDecorator {
- - plan
  + asComplex(row, column)
  + getWidth()
  + getHeight()
@@ -72,24 +71,6 @@ class Complex {
 
 }
 
-IComplex <|---[dashed]Complex
-IPlanComplex<|---[dashed]PlanComplexDecorator
-PlanComplexDecorator<|---PlanComplexTranslationDecorator
-PlanComplexDecorator<|---PlanComplexZoomDecorator
-IPlanComplex<|----[dashed]PlanComplex
-PlanComplexDecorator *-- PlanComplex : use
-PlanComplexZoomDecorator *-- Complex : use
-PlanComplexTranslationDecorator *-- Complex : use
-
-note "On a choisi un décorateur pour AJOUTER une translation aux nombres complexes" as N1
-note "On a choisi un décorateur pour AJOUTER le zoom aux nombres complexes" as N2
-PlanComplexTranslationDecorator .. N1
-PlanComplexZoomDecorator .. N2
-@enduml
-```
-
-```plantuml
-@startuml
 
 interface IStrategieSuite {
  + determinerTermeSuivant(IComplex termeAnterieur) : IComplex
@@ -102,14 +83,12 @@ interface Iterator<E> {
 
 class SuiteIterator {
  - iterationMax : int
- - terme : IComplex
  + SuiteIterator(IStrategie suite, IComplex terme, int iterationMax)
  + hasNext() : boolean
  + next() : IComplex
 }
 
 class SuiteMandelbrot {
- - IComplex z;
  - maxIteration : int
  + SuiteMandelbrot(maxIteration, c, z)
  + determinerTermeSuivant(IComplex termeAnterieur) : IComplex
@@ -117,8 +96,6 @@ class SuiteMandelbrot {
 }
 
 class SuiteJulia {
- - z : IComplex
- - c : IComplex
  - maxIteration : int
  + SuiteJulia(maxIteration, c, z)
  + determinerTermeSuivant(IComplex terme)
@@ -141,6 +118,20 @@ Iterable <--[dashed] SuiteJulia
 
 SuiteIterator *-- SuiteJulia : iterator
 SuiteIterator *-- SuiteMandelbrot : iterator
+IComplex *-- SuiteIterator: - terme
+IComplex *-- SuiteJulia : - c
+IComplex *-- SuiteJulia : - z
+IComplex *-- SuiteMandelbrot : -z
+
+IComplex <|---[dashed]Complex
+IPlanComplex<|---[dashed]PlanComplexDecorator
+PlanComplexDecorator<|---PlanComplexTranslationDecorator
+PlanComplexDecorator<|---PlanComplexZoomDecorator
+IPlanComplex<|----[dashed]PlanComplex
+PlanComplexDecorator *-- PlanComplex : use
+PlanComplexZoomDecorator *-- IComplex : - constante
+PlanComplexTranslationDecorator *-- IComplex : - constante
+
 @enduml
 ```
 
