@@ -15,7 +15,29 @@ package fr.univartois.butinfo.fractals.figure;
  *
  * @version 0.1.0
  */
-public class FigureTransformDecorator {
+public class FigureTransformDecorator extends FigureDecorator {
+    
+    private double scale;
+    
+    public FigureTransformDecorator(IFigure figure) {
+        this(figure, 1);
+    }
+    
+    public FigureTransformDecorator(IFigure figure, double scale) {
+        super(figure);
+        this.scale = scale;
+    }
+    
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.butinfo.fractals.figure.IFigure#getSVG()
+     */
+    @Override
+    public String getSVG() {
+        return "<g transform=\"scale(" + scale + ")\">"
+                + getFigure().toString() + "</g>";
+    }
 
 }
 
