@@ -149,13 +149,12 @@ public class ImageBuilder {
         IFractalImage image = new AdaptateurImage(new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB));
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                IStrategieSuite suite = null;
-                IComplex complex = new Complex(j, i);
-                if ("julia".toUpperCase().equals(nom.toUpperCase())) {
+                IComplex complex = planZoom.asComplex(j, i);
+                if ("julia".equalsIgnoreCase(nom)) {
  ;                  s = new SuiteJulia(c, complex, 124);
                     it = (SuiteIterator) ((SuiteJulia)(s)).iterator();
-                    maxIt = ((SuiteMandelbrot)(s)).getMaxIteration();
-                } else if ("mandelbrot".toUpperCase().equals(nom.toUpperCase())) {
+                    maxIt = ((SuiteJulia)(s)).getMaxIteration();
+                } else if ("mandelbrot".equalsIgnoreCase(nom)) {
                     s = new SuiteMandelbrot(complex, 124);
                     it = (SuiteIterator) ((SuiteMandelbrot)(s)).iterator();
                     maxIt = ((SuiteMandelbrot)(s)).getMaxIteration();
