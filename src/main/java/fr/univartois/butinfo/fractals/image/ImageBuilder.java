@@ -49,6 +49,10 @@ public class ImageBuilder {
         
     }
     
+    public ImageBuilder newInstance() {
+        return new ImageBuilder();
+    }
+    
     public ImageBuilder withWidth(int width) {
         this.width = width;
         return this;
