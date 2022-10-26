@@ -5,12 +5,13 @@
  * Tous droits réservés.
  */
 
-package fr.univartois.butinfo.fractals.suite;
+package fr.univartois.butinfo.fractals.suite.simple;
 
 import java.util.Iterator;
-import java.util.function.BinaryOperator;
 
 import fr.univartois.butinfo.fractals.complex.IComplex;
+import fr.univartois.butinfo.fractals.suite.simple.IStrategieSuite;
+import fr.univartois.butinfo.fractals.suite.simple.SuiteIterator;
 
 /**
  * Le type SuiteMandelbrot
@@ -19,32 +20,27 @@ import fr.univartois.butinfo.fractals.complex.IComplex;
  *
  * @version 0.1.0
  */
-public class SuiteGeneraliseMandelbrot implements IStrategieSuite, Iterable<IComplex> {
-
+public class SuiteMandelbrot implements IStrategieSuite, Iterable<IComplex> {
+    
     private IComplex z;
-    private final int maxIteration;
+    private int maxIteration;
     private IComplex premierTerme;
-
-    /**
-     * Opération qui va être utilisée pour déterminer les termes de la suite.
-     */
-    private final BinaryOperator<IComplex> fonction;
-
-    public SuiteGeneraliseMandelbrot(IComplex z, int maxIteration, BinaryOperator<IComplex> fonction) {
+    
+    public SuiteMandelbrot(IComplex z, int maxIteration) {
         this.z = z;
         this.maxIteration = maxIteration;
         premierTerme = z.multiply(z).add(z);
-        this.fonction = fonction;
     }
 
     /*
      * (non-Javadoc)
      *
-     * @see fr.univartois.butinfo.fractals.suite.IStrategieSuite#derterminerTermeSuivant(fr.univartois.butinfo.fractals.complex.IComplex)
+     * @see fr.univartois.butinfo.fractals.suite.simple.IStrategieSuite#derterminerTermeSuivant(fr.univartois.butinfo.fractals.complex.IComplex)
      */
     @Override
     public IComplex derterminerTermeSuivant(IComplex termeAnterieur) {
-        return fonction.apply(termeAnterieur, z);
+        IComplex terme = termeAnterieur.multiply(termeAnterieur).add(z);
+        return terme;
     }
 
     /*

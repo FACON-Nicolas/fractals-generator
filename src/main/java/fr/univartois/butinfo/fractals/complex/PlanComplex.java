@@ -8,6 +8,9 @@
 package fr.univartois.butinfo.fractals.complex;
 
 
+import fr.univartois.butinfo.fractals.image.IFractalImage;
+import fr.univartois.butinfo.fractals.image.Pixel;
+
 /**
  * Le type PlanComplex
  *
@@ -20,12 +23,12 @@ public class PlanComplex implements IPlanComplex {
     /**
      * longueur plan
      */
-    private int width;
+    private final int width;
     
     /**
      * largeur plan
      */
-    private int height;
+    private final int height;
     
     /**
      * 
@@ -47,10 +50,28 @@ public class PlanComplex implements IPlanComplex {
      */
     @Override
     public IComplex asComplex(int row, int column) {
-        double re = (column + 0.5) - (width / 2);
-        double im = (height / 2) -  (row + 0.5);
+        double re = (column + 0.5) - (width / 2.0);
+        double im = (height / 2.0) -  (row + 0.5);
         return new Complex(re, im);
     }
+
+
+    public Pixel asPixel(IComplex complex, IFractalImage fractalImage){
+        int x = (int) (- complex.getImaginaryPart() + (height / 2.0) - 0.5);
+        int y = (int) (complex.getRealPart() + (width / 2.0) - 0.5);
+        if ((x <= width) && (y<= height))
+            return new Pixel(fractalImage, x, y);
+        return null;
+    }
+
+    public Pixel asPixel(IPoint point, IFractalImage fractalImage){
+        int x = (int) point.getX();
+        int y = (int) point.getY();
+        if ((x <= width) && (y<= height))
+            return new Pixel(fractalImage, x, y);
+        return null;
+    }
+
 
     /*
      * (non-Javadoc)
