@@ -49,7 +49,7 @@ public class ImageBuilder {
         
     }
     
-    public ImageBuilder newInstance() {
+    public static ImageBuilder newInstance() {
         return new ImageBuilder();
     }
     
