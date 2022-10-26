@@ -26,6 +26,7 @@ import fr.cril.cli.annotations.Args;
 import fr.cril.cli.annotations.Description;
 import fr.cril.cli.annotations.LongName;
 import fr.cril.cli.annotations.ShortName;
+import fr.univartois.butinfo.fractals.image.ImageBuilder;
 
 /**
  * La classe Fractals permet de générer des fractales depuis la ligne de commande.
@@ -194,6 +195,8 @@ public final class Fractals {
      */
     public void buildFractal() {
         // TODO Ajoutez ici le code pour utiliser votre implantation et créer la fractale.
+        ImageBuilder imageBuilder = ImageBuilder;
+
     }
 
     /**
