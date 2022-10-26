@@ -48,6 +48,28 @@ abstract class PlanComplexDecorator {
  + getHeight()
 }
 
+class ImageBuilder {
+ - width
+ - height
+ - pointCentral
+ - palette
+ - path
+ - nom
+ - ImageBuilder()
+ + withHeight(height)
+ + withWidth(width)
+ + withPointCentral(pointCentral)
+ + withPalette(palette)
+ + withPath(path)
+ + withNom(nom)
+ + getWidth()
+ + getHeight()
+ + getPalette()
+ + getNom()
+ + getPath()
+ + generation() throws IOException
+}
+
 class Complex {
 
 -real
@@ -292,6 +314,7 @@ class SuiteGeneraliseMandelbrot {
  + iterator()
 }
 
+IPoint *-- ImageBuilder : - pointCentral
 Iterable <|--[dashed] SuiteGeneraliseJulia
 IStrategieSuite <|--[dashed] SuiteGeneraliseJulia
 SuiteGeneraliseJulia *-- IComplex : - z
@@ -311,6 +334,7 @@ IStrategieCouleurs <|--[dashed] PaletteRouge
 IStrategieCouleurs <|--[dashed] PaletteJaune
 IStrategieCouleurs <|--[dashed] CouleurDecorateur
 IStrategieCouleurs *-- CouleurDecorateur : - palette
+AdaptateurImage *-- ImageBuilder
 
 CouleurDecorateur <|--- CouleurDecorateurR
 CouleurDecorateur <|--- CouleurDecorateurV
