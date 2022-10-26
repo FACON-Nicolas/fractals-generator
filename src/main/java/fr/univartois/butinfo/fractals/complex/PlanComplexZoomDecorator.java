@@ -32,7 +32,7 @@ public class PlanComplexZoomDecorator extends PlanComplexDecorator {
     }
     
     public IComplex asComplex(int row, int column) {
-        return super.asComplex(row, column).multiply(column);
+        return super.asComplex(row, column).multiply(constante);
     }
 
 }
