@@ -44,17 +44,13 @@ public class FigureComposite implements IFigure {
      */
     @Override
     public String getSVG() {
-        String debut = "<svg width=\"" + width + "\" height=\"" + height
-                + "xmlns=\"http://www.w3.org/2000/svg\">";
-        
-        String fin = "</svg>";
         
         StringBuffer s = new StringBuffer();
         
         for (IFigure figure : figures)
             s.append(figure + "\n");
         
-        return debut + s.toString() + fin;
+        return s.toString();
     }
     
     
