@@ -28,6 +28,14 @@ public class FigureComposite implements IFigure {
         this.width = width;
         this.height = height;
     }
+    
+    public void add(IFigure figure) {
+        figures.add(figure);
+    }
+    
+    public void remove(IFigure figure) {
+        figures.remove(figure);
+    }
 
     /*
      * (non-Javadoc)
