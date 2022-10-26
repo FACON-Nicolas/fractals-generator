@@ -17,12 +17,12 @@ import fr.univartois.butinfo.fractals.complex.IComplex;
 import fr.univartois.butinfo.fractals.complex.IPoint;
 import fr.univartois.butinfo.fractals.complex.PlanComplex;
 import fr.univartois.butinfo.fractals.complex.PlanComplexZoomDecorator;
-import fr.univartois.butinfo.fractals.suite.IStrategieSuite;
-import fr.univartois.butinfo.fractals.suite.SuiteGeneraliseJulia;
-import fr.univartois.butinfo.fractals.suite.SuiteGeneraliseMandelbrot;
-import fr.univartois.butinfo.fractals.suite.SuiteIterator;
-import fr.univartois.butinfo.fractals.suite.SuiteJulia;
-import fr.univartois.butinfo.fractals.suite.SuiteMandelbrot;
+import fr.univartois.butinfo.fractals.suite.simple.IStrategieSuite;
+import fr.univartois.butinfo.fractals.suite.simple.SuiteGeneraliseJulia;
+import fr.univartois.butinfo.fractals.suite.simple.SuiteGeneraliseMandelbrot;
+import fr.univartois.butinfo.fractals.suite.simple.SuiteIterator;
+import fr.univartois.butinfo.fractals.suite.simple.SuiteJulia;
+import fr.univartois.butinfo.fractals.suite.simple.SuiteMandelbrot;
 
 /**
  * Le type GenerateurImageBuilder
