@@ -176,10 +176,6 @@ public final class Fractals {
                 System.exit(0);
             }
 
-            scale = Double.parseDouble(scaleString);
-            focusX = Double.parseDouble(focusXString);
-            focusY = Double.parseDouble(focusYString);
-
         } catch (CliUsageException | CliOptionDefinitionException e) {
             usage();
             throw new IllegalArgumentException(e);
