@@ -36,4 +36,14 @@ public class SuiteIterator implements Iterator<IComplex> {
         }
         return null;
     }
+    
+    
+    /**
+     * Donne l'attribut nbInteration de cette instance de SuiteIterator.
+     *
+     * @return L'attribut nbInteration de cette instance de SuiteIterator.
+     */
+    public int getNbInteration() {
+        return nbInteration;
+    }
 }

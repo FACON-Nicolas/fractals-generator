@@ -52,6 +52,16 @@ public class SuiteMandelbrot implements IStrategieSuite, Iterable<IComplex> {
     public Iterator<IComplex> iterator() {
         return new SuiteIterator(this, z, maxIteration);
     }
+    
+    
+    /**
+     * Donne l'attribut maxIteration de cette instance de SuiteMandelbrot.
+     *
+     * @return L'attribut maxIteration de cette instance de SuiteMandelbrot.
+     */
+    public int getMaxIteration() {
+        return maxIteration;
+    }
 
 }
 

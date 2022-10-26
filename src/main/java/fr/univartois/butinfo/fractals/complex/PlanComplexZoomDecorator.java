@@ -25,7 +25,7 @@ public class PlanComplexZoomDecorator extends PlanComplexDecorator {
      * @param width
      * @param height
      */
-    protected PlanComplexZoomDecorator(IComplex constante, IPlanComplex plan, int width, int height) {
+    public PlanComplexZoomDecorator(IComplex constante, IPlanComplex plan, int width, int height) {
         // TODO Auto-generated constructor stub.
         super(plan, width, height);
         this.constante = constante;
