@@ -1,4 +1,4 @@
-package fr.univartois.butinfo.fractals;
+package fr.univartois.butinfo.fractals.suite;
 
 import fr.univartois.butinfo.fractals.complex.IComplex;
 

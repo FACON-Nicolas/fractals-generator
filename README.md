@@ -4,18 +4,48 @@
 
 ```plantuml
 @startuml
-
 interface IComplex {
-+getRealPart()
-+getImaginaryPart()
-+abs()
-+negate()
-+conjugate()
-+add(IComplex other)
-+substract(IComplex other)
-+multiply(Icomplex other)
-+multiply(double value)
-+divide(Icomplex other)
++{abstract}getRealPart()
++{abstract}getImaginaryPart()
++{abstract}abs()
++{abstract}negate()
++{abstract}conjugate()
++{abstract}add(IComplex other)
++{abstract}substract(IComplex other)
++{abstract}multiply(Icomplex other)
++{abstract}multiply(double value)
++{abstract}divide(Icomplex other)
+}
+
+class PlanComplexTranslationDecorator {
+ + asComplex(row, column)
+ + PlanComplexTranslationDecorator(constante, plan, width, height)
+}
+
+class PlanComplexZoomDecorator {
+ + asComplex(row, column)
+ + PlanComplexZoomDecorator(constante, plan, width, height)
+}
+
+class PlanComplex {
+ - width
+ - height
+ + PlanComplex(width, height)
+ + asComplex(row, column)
+ + getWidth()
+ + getHeight()
+}
+
+interface IPlanComplex {
+ + {abstract}asComplex(row, column)
+ + {abstract}getWidth()
+ + {abstract}getHeight()
+}
+
+abstract class PlanComplexDecorator {
+ + asComplex(row, column)
+ + getWidth()
+ + getHeight()
 }
 
 class Complex {
@@ -41,10 +71,70 @@ class Complex {
 
 }
 
-IComplex <|---Complex
+
+interface IStrategieSuite {
+ + determinerTermeSuivant(IComplex termeAnterieur) : IComplex
+}
+
+interface Iterator<E> {
+ + {abstract} next() : E
+ + {abstract} hasNext() : boolean
+}
+
+class SuiteIterator {
+ - iterationMax : int
+ + SuiteIterator(IStrategie suite, IComplex terme, int iterationMax)
+ + hasNext() : boolean
+ + next() : IComplex
+}
+
+class SuiteMandelbrot {
+ - maxIteration : int
+ + SuiteMandelbrot(maxIteration, c, z)
+ + determinerTermeSuivant(IComplex termeAnterieur) : IComplex
+ + iterator() : Iterator<IComplex>
+}
+
+class SuiteJulia {
+ - maxIteration : int
+ + SuiteJulia(maxIteration, c, z)
+ + determinerTermeSuivant(IComplex terme)
+ + iterator() : Iterator<IComplex>
+}
+
+
+interface Iterable<E> {
+ + {abstract} iterator() : Iterator<E>
+}
+
+SuiteIterator *-- IStrategieSuite : suite
+Iterator <--[dashed] SuiteIterator
+
+SuiteIterator <--[dashed] SuiteMandelbrot
+Iterable <--[dashed] SuiteMandelbrot
+
+SuiteIterator <--[dashed] SuiteJulia
+Iterable <--[dashed] SuiteJulia
+
+SuiteIterator *-- SuiteJulia : iterator
+SuiteIterator *-- SuiteMandelbrot : iterator
+IComplex *-- SuiteIterator: - terme
+IComplex *-- SuiteJulia : - c
+IComplex *-- SuiteJulia : - z
+IComplex *-- SuiteMandelbrot : -z
+
+IComplex <|---[dashed]Complex
+IPlanComplex<|---[dashed]PlanComplexDecorator
+PlanComplexDecorator<|---PlanComplexTranslationDecorator
+PlanComplexDecorator<|---PlanComplexZoomDecorator
+IPlanComplex<|----[dashed]PlanComplex
+PlanComplexDecorator *-- PlanComplex : use
+PlanComplexZoomDecorator *-- IComplex : - constante
+PlanComplexTranslationDecorator *-- IComplex : - constante
 
 @enduml
 ```
+
 
 ## Description
 

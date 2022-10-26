@@ -1,4 +1,4 @@
-package fr.univartois.butinfo.fractals;
+package fr.univartois.butinfo.fractals.suite;
 
 import fr.univartois.butinfo.fractals.complex.IComplex;
 
@@ -11,20 +11,20 @@ public class SuiteIterator implements Iterator<IComplex> {
 
     private final IStrategieSuite suite;
     private IComplex terme;
-    private final int interationMax;
+    private final int iterationMax;
 
     private int nbInteration;
 
-    public SuiteIterator(IStrategieSuite suite, IComplex terme, int interationMax) {
+    public SuiteIterator(IStrategieSuite suite, IComplex terme, int iterationMax) {
         this.suite = suite;
         this.terme = terme;
-        this.interationMax = interationMax;
+        this.iterationMax = iterationMax;
         nbInteration = 0;
     }
 
     @Override
     public boolean hasNext() {
-        return (terme.abs() > 2) || (nbInteration < interationMax);
+        return (terme.abs() <= 2) && (nbInteration < iterationMax);
     }
 
     @Override
