@@ -6,7 +6,7 @@ public class PaletteJaune implements IStrategieCouleurs{
 
 	@Override
 	public Color palette(int nbItMax, int nbIterations) {
-		float ratio =(float) nbIterations/nbItMax;
+		float ratio = (float) nbIterations / nbItMax;
 		return new Color(ratio,ratio,ratio/2);
 	}
 

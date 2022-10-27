@@ -16,6 +16,7 @@
 
 package fr.univartois.butinfo.fractals;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import fr.cril.cli.ClassParser;
@@ -26,6 +27,10 @@ import fr.cril.cli.annotations.Args;
 import fr.cril.cli.annotations.Description;
 import fr.cril.cli.annotations.LongName;
 import fr.cril.cli.annotations.ShortName;
+import fr.univartois.butinfo.couleurs.IStrategieCouleurs;
+import fr.univartois.butinfo.couleurs.PaletteJaune;
+import fr.univartois.butinfo.couleurs.PaletteRose;
+import fr.univartois.butinfo.fractals.complex.Point;
 import fr.univartois.butinfo.fractals.image.ImageBuilder;
 
 /**
@@ -171,10 +176,6 @@ public final class Fractals {
                 System.exit(0);
             }
 
-            scale = Double.parseDouble(scaleString);
-            focusX = Double.parseDouble(focusXString);
-            focusY = Double.parseDouble(focusYString);
-
         } catch (CliUsageException | CliOptionDefinitionException e) {
             usage();
             throw new IllegalArgumentException(e);
@@ -194,8 +195,20 @@ public final class Fractals {
      * Crée la fractale demandée dans la ligne de commande.
      */
     public void buildFractal() {
-        // TODO Ajoutez ici le code pour utiliser votre implantation et créer la fractale.
-        ImageBuilder imageBuilder = ImageBuilder;
+        IStrategieCouleurs couleurs = new PaletteRose();
+        if (paletteName.equalsIgnoreCase("jaune")){
+            couleurs = new PaletteJaune();
+        } else if (paletteName.equalsIgnoreCase("rose")) {
+            couleurs = new PaletteRose();
+        }
+        ImageBuilder builder = ImageBuilder.newInstance().withHeight(height).withWidth(width)
+                .withNom(fractaleName).withPalette(couleurs).withPointCentral(new Point(focusX, focusY))
+                .withPath(outputFile);
+        try {
+            builder.generation();
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la génération de la fractale.");
+        }
 
     }
 

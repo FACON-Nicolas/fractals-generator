@@ -17,7 +17,7 @@ package fr.univartois.butinfo.fractals.complex;
  */
 public class PlanComplexZoomDecorator extends PlanComplexDecorator {
 
-    private IComplex constante;
+    private double constante;
     
     /**
      * Crée une nouvelle instance de PlanComplexZoomDecorator.
@@ -25,7 +25,7 @@ public class PlanComplexZoomDecorator extends PlanComplexDecorator {
      * @param width
      * @param height
      */
-    public PlanComplexZoomDecorator(IComplex constante, IPlanComplex plan, int width, int height) {
+    public PlanComplexZoomDecorator(double constante, IPlanComplex plan, int width, int height) {
         // TODO Auto-generated constructor stub.
         super(plan, width, height);
         this.constante = constante;
