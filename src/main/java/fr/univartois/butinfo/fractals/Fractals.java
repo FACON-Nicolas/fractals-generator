@@ -16,6 +16,7 @@
 
 package fr.univartois.butinfo.fractals;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import fr.cril.cli.ClassParser;
@@ -26,6 +27,11 @@ import fr.cril.cli.annotations.Args;
 import fr.cril.cli.annotations.Description;
 import fr.cril.cli.annotations.LongName;
 import fr.cril.cli.annotations.ShortName;
+import fr.univartois.butinfo.couleurs.IStrategieCouleurs;
+import fr.univartois.butinfo.couleurs.PaletteJaune;
+import fr.univartois.butinfo.couleurs.PaletteRose;
+import fr.univartois.butinfo.fractals.complex.Point;
+import fr.univartois.butinfo.fractals.image.ImageBuilder;
 
 /**
  * La classe Fractals permet de générer des fractales depuis la ligne de commande.
@@ -69,6 +75,11 @@ public final class Fractals {
     @LongName("scale")
     @Description("Spécifie l'échelle à appliquer sur l'image.")
     @Args(value = 1, names = "ratio")
+    private String scaleString;
+
+    /**
+     * L'échelle à appliquer sur l'image.
+     */
     private double scale;
 
     /**
@@ -78,6 +89,11 @@ public final class Fractals {
     @LongName("focus-x")
     @Description("Spécifie le point central de l'image sur l'axe des abscisses.")
     @Args(value = 1, names = "real")
+    private String focusXString;
+
+    /**
+     * Le point central de l'image sur l'axe des abscisses.
+     */
     private double focusX;
 
     /**
@@ -87,7 +103,12 @@ public final class Fractals {
     @LongName("focus-y")
     @Description("Spécifie le point central de l'image sur l'axe des ordonnées.")
     @Args(value = 1, names = "real")
-    private double foxusY;
+    private String focusYString;
+
+    /**
+     * Le point central de l'image sur l'axe des ordonnées.
+     */
+    private double focusY;
 
     /**
      * L'option spécifiant le nom de la fractale à générer.
@@ -174,7 +195,21 @@ public final class Fractals {
      * Crée la fractale demandée dans la ligne de commande.
      */
     public void buildFractal() {
-        // TODO Ajoutez ici le code pour utiliser votre implantation et créer la fractale.
+        IStrategieCouleurs couleurs = new PaletteRose();
+        if (paletteName.equalsIgnoreCase("jaune")){
+            couleurs = new PaletteJaune();
+        } else if (paletteName.equalsIgnoreCase("rose")) {
+            couleurs = new PaletteRose();
+        }
+        ImageBuilder builder = ImageBuilder.newInstance().withHeight(height).withWidth(width)
+                .withNom(fractaleName).withPalette(couleurs).withPointCentral(new Point(focusX, focusY))
+                .withPath(outputFile);
+        try {
+            builder.generation();
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la génération de la fractale.");
+        }
+
     }
 
     /**
