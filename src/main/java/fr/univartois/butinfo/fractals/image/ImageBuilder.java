@@ -143,19 +143,19 @@ public class ImageBuilder {
     }
    
     public void generation() throws IOException {
-        Complex c = new Complex(0.4,  0.6);
+        Complex c = new Complex(-0.4,  0.6);
         int nbIt = 0;
         int maxIt = 0;
         PlanComplex plan = new PlanComplex(width, height);
         IStrategieSuite s = null;
         SuiteIterator it;
-        PlanComplexZoomDecorator planZoom = new PlanComplexZoomDecorator(c, plan, width, height);
+        PlanComplexZoomDecorator planZoom = new PlanComplexZoomDecorator(0.001, plan, width, height);
         IFractalImage image = new AdaptateurImage(new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB));
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 IComplex complex = planZoom.asComplex(j, i);
                 if ("julia".equalsIgnoreCase(nom)) {
- ;                  s = new SuiteJulia(c, complex, 124);
+                    s = new SuiteJulia(complex, c, 124);
                     it = (SuiteIterator) ((SuiteJulia)(s)).iterator();
                     maxIt = ((SuiteJulia)(s)).getMaxIteration();
                 } else if ("mandelbrot".equalsIgnoreCase(nom)) {
@@ -166,7 +166,7 @@ public class ImageBuilder {
                     throw new IllegalArgumentException();
                 }
                 while (it.hasNext()) it.next();
-                image.setColor(j, i, palette.palette(nbIt, maxIt));
+                image.setColor(j, i, palette.palette(maxIt, it.getNbInteration()));
             }
         }
         image.saveAs(path);
