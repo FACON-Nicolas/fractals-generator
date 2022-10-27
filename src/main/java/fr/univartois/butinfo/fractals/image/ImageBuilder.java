@@ -9,7 +9,6 @@ package fr.univartois.butinfo.fractals.image;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.function.BinaryOperator;
 
 import fr.univartois.butinfo.couleurs.IStrategieCouleurs;
 import fr.univartois.butinfo.fractals.complex.Complex;
@@ -17,9 +16,8 @@ import fr.univartois.butinfo.fractals.complex.IComplex;
 import fr.univartois.butinfo.fractals.complex.IPoint;
 import fr.univartois.butinfo.fractals.complex.PlanComplex;
 import fr.univartois.butinfo.fractals.complex.PlanComplexZoomDecorator;
+import fr.univartois.butinfo.fractals.complex.Point;
 import fr.univartois.butinfo.fractals.suite.simple.IStrategieSuite;
-import fr.univartois.butinfo.fractals.suite.simple.SuiteGeneraliseJulia;
-import fr.univartois.butinfo.fractals.suite.simple.SuiteGeneraliseMandelbrot;
 import fr.univartois.butinfo.fractals.suite.simple.SuiteIterator;
 import fr.univartois.butinfo.fractals.suite.simple.SuiteJulia;
 import fr.univartois.butinfo.fractals.suite.simple.SuiteMandelbrot;
@@ -45,12 +43,19 @@ public class ImageBuilder {
 
     private String nom;
     
+    private double echelle;
+    
     private ImageBuilder() {
         
     }
     
     public static ImageBuilder newInstance() {
         return new ImageBuilder();
+    }
+    
+    public ImageBuilder withEchelle(double echelle) {
+        this.echelle = echelle;
+        return this;
     }
     
     public ImageBuilder withWidth(int width) {
@@ -64,7 +69,7 @@ public class ImageBuilder {
     }
     
     public ImageBuilder withPointCentral(IPoint central) {
-        this.pointCentral = pointCentral;
+        this.pointCentral = central;
         return this;
     }
     
@@ -124,6 +129,16 @@ public class ImageBuilder {
     
     
     /**
+     * Donne l'attribut echelle de cette instance de ImageBuilder.
+     *
+     * @return L'attribut echelle de cette instance de ImageBuilder.
+     */
+    public double getEchelle() {
+        return echelle;
+    }
+    
+    
+    /**
      * Donne l'attribut nom de cette instance de ImageBuilder.
      *
      * @return L'attribut nom de cette instance de ImageBuilder.
@@ -149,11 +164,12 @@ public class ImageBuilder {
         PlanComplex plan = new PlanComplex(width, height);
         IStrategieSuite s = null;
         SuiteIterator it;
-        PlanComplexZoomDecorator planZoom = new PlanComplexZoomDecorator(0.001, plan, width, height);
+        PlanComplexZoomDecorator planZoom = new PlanComplexZoomDecorator(echelle, plan, width, height);
         IFractalImage image = new AdaptateurImage(new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB));
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 IComplex complex = planZoom.asComplex(j, i);
+                complex = complex.add(((Point) pointCentral).fromPointToComplex());
                 if ("julia".equalsIgnoreCase(nom)) {
                     s = new SuiteJulia(complex, c, 124);
                     it = (SuiteIterator) ((SuiteJulia)(s)).iterator();
