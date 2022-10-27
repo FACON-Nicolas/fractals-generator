@@ -18,6 +18,7 @@ import fr.univartois.butinfo.fractals.complex.PlanComplex;
 import fr.univartois.butinfo.fractals.complex.PlanComplexZoomDecorator;
 import fr.univartois.butinfo.fractals.complex.Point;
 import fr.univartois.butinfo.fractals.suite.simple.IStrategieSuite;
+import fr.univartois.butinfo.fractals.suite.simple.SuiteGeneraliseJulia;
 import fr.univartois.butinfo.fractals.suite.simple.SuiteIterator;
 import fr.univartois.butinfo.fractals.suite.simple.SuiteJulia;
 import fr.univartois.butinfo.fractals.suite.simple.SuiteMandelbrot;
@@ -178,6 +179,11 @@ public class ImageBuilder {
                     s = new SuiteMandelbrot(complex, 124);
                     it = (SuiteIterator) ((SuiteMandelbrot)(s)).iterator();
                     maxIt = ((SuiteMandelbrot)(s)).getMaxIteration();
+                } else if ("juliaGeneralise".equalsIgnoreCase(nom)) {
+                    c = new Complex(-0.6078,0.4380);                    
+                    s = new SuiteGeneraliseJulia(complex, c, 124, (z, e) -> z.multiply(z).add(e));
+                    it = (SuiteIterator) ((SuiteGeneraliseJulia)(s)).iterator();
+                    maxIt = ((SuiteGeneraliseJulia)(s)).getMaxIteration();
                 } else {
                     throw new IllegalArgumentException();
                 }
