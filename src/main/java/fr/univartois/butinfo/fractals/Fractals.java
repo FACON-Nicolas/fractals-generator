@@ -175,6 +175,11 @@ public final class Fractals {
                 usage();
                 System.exit(0);
             }
+            
+            scale = Double.parseDouble(scaleString);
+            focusX = Double.parseDouble(focusXString);
+            focusY = Double.parseDouble(focusYString);
+
 
         } catch (CliUsageException | CliOptionDefinitionException e) {
             usage();
@@ -203,7 +208,7 @@ public final class Fractals {
         }
         ImageBuilder builder = ImageBuilder.newInstance().withHeight(height).withWidth(width)
                 .withNom(fractaleName).withPalette(couleurs).withPointCentral(new Point(focusX, focusY))
-                .withPath(outputFile);
+                .withPath(outputFile).withEchelle(scale);
         try {
             builder.generation();
         } catch (IOException e) {
