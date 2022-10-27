@@ -18,12 +18,12 @@ interface IComplex {
 }
 
 class PlanComplexTranslationDecorator {
- - constante
+ + asComplex(row, column)
  + PlanComplexTranslationDecorator(constante, plan, width, height)
 }
 
 class PlanComplexZoomDecorator {
- - constante
+ + asComplex(row, column)
  + PlanComplexZoomDecorator(constante, plan, width, height)
 }
 
@@ -43,7 +43,6 @@ interface IPlanComplex {
 }
 
 abstract class PlanComplexDecorator {
- - plan
  + asComplex(row, column)
  + getWidth()
  + getHeight()
@@ -72,21 +71,294 @@ class Complex {
 
 }
 
+
+interface IStrategieSuite {
+ + determinerTermeSuivant(IComplex termeAnterieur) : IComplex
+}
+
+interface Iterator<E> {
+ + {abstract} next() : E
+ + {abstract} hasNext() : boolean
+}
+
+class SuiteIterator {
+ - iterationMax : int
+ + SuiteIterator(IStrategie suite, IComplex terme, int iterationMax)
+ + hasNext() : boolean
+ + next() : IComplex
+}
+
+class SuiteMandelbrot {
+ - maxIteration : int
+ + SuiteMandelbrot(maxIteration, c, z)
+ + determinerTermeSuivant(IComplex termeAnterieur) : IComplex
+ + iterator() : Iterator<IComplex>
+}
+
+class SuiteJulia {
+ - maxIteration : int
+ + SuiteJulia(maxIteration, c, z)
+ + determinerTermeSuivant(IComplex terme)
+ + iterator() : Iterator<IComplex>
+}
+
+
+interface Iterable<E> {
+ + {abstract} iterator() : Iterator<E>
+}
+
+class BufferedImage {
+
+}
+
+interface IFractalImage {
+ + {abstract} getHeight()
+ +{abstract} getWidth()
+ + {abstract} getPixel(row, column)
+ + {abstract} setColor(row, column, color)
+ + {abstract} saveAs(path)
+}
+
+class AdaptateurImage {
+  +  getHeight()
+ + getWidth()
+ +  getPixel(row, column)
+ +  setColor(row, column, color)
+ +  saveAs(path)
+}
+
+class Pixel {
+ - row
+ - column
+ + Pixel(image, row, column)
+ + getRow()
+ + getColumn()
+ + getImage()
+ + setColor(color)
+}
+
+interface IPoint {
+ + getX()
+ + getY()
+ + distance(other: IPoint)
+}
+
+class Point {
+ - x
+ - y
+ + Point(x,y)
+ + getX()
+ + getY()
+ + distance(other : IPoint)
+}
+
+class ComplexAdaptateur {
+ + ComplexAdaptateur(complex)
+ + getX()
+ + getY()
+ + distance(other : IPoint)
+}
+
+interface IFigure {
+ + {abstract} getSVG()
+}
+
+abstract class AbstractFigure {
+ - x
+ - y
+ - Color
+ + AbstractFigure(x, y, color)
+}
+
+class FigureRectangle {
+ - width
+ - height
+ + getSVG()
+ + FigureRectangle(x, y, color, width, height)
+}
+
+class FigureCarre {
+ - cote
+ + FigureCote(x, y, color, cote)
+}
+
+class FigureCercle {
+ - rayon
+ + FigureCercle(x, y, color, rayon)
+ + getSVG()
+}
+
+abstract class FigureDecorator {
+ - figure : IFigure
+ + FigureDecorator(figure)
+ + getFigure()
+}
+
+class FigureTransformScaleDecorator {
+ - scale
+ + FigureTransformScaleDecorator(figure, scale=1)
+ + getSVG()
+}
+
+class FigureTransformRotateDecorator {
+ - rotate
+ + FigureTransformScaleDecorator(figure, rotate=0)
+ + getSVG()
+}
+
+class FigureTransformTranslationDecorator {
+ - translateX
+ - translateY
+ + FigureTransformScaleDecorator(figure, translateX, translateY)
+ + getSVG()
+}
+
+class FigureComposite {
+ + getSVG()
+ + add()
+ + remove()
+}
+
+interface IStrategieCouleurs {
+ + {abstract} palette(nbItMax, nbIteration) : Color
+}
+
+class PaletteJaune {
+ + palette(nbItMax, nbIteration) : Color
+}
+
+class PaletteRouge {
+ + palette(nbItMax, nbIteration) : Color
+}
+
+abstract class CouleurDecorateur {
+ + CouleurDecorateur(IStrategieCouleurs palette)
+}
+
+class CouleurDecorateurR {
+ + CouleurDecorateurR(IStrategieCouleurs palette)
+ + palette(int nbItMax, int nbIterations)
+}
+
+class CouleurDecorateurV {
+ + CouleurDecorateurV(IStrategieCouleurs palette)
+ + palette(int nbItMax, int nbIterations)
+}
+
+class CouleurDecorateurB {
+ + CouleurDecorateurB(IStrategieCouleurs palette)
+ + palette(int nbItMax, int nbIterations)
+}
+
+interface IStrategieSuiteChaotique {
+ + determinerTermeSuivant(pointAnterieur)
+}
+
+class SuiteChaotiqueCirculaire {
+ - premierPoint
+ - iterationMax
+ + SuiteChaotiqueCirculaire(IPoint premierPoint, int interationMax)
+ + derterminerTermeSuivant(IPoint pointAnterieur)
+ + iterator()
+}
+
+class SuiteChaotiqueFeigenbaum {
+ - premierPoint
+ - iterationMax
+ + SuiteChaotiqueFeigenbaum(IPoint premierPoint, int interationMax)
+ + derterminerTermeSuivant(IPoint pointAnterieur)
+ + iterator()
+}
+
+class SuiteChaotiqueIterator {
+ + SuiteChaotiqueIterator(IStrategieSuiteChaotique suite, int interationMax, IPoint point)
+ + hasNext()
+ + next()
+}
+
+class SuiteGeneraliseJulia {
+ - maxIteration : int
+ - BinaryOperator<IComplex> function
+ + SuiteGeneraliseJulia(IComplex z, IComplex c, int maxIteration, BinaryOperator<IComplex> fonction)
+ + derterminerTermeSuivant(IComplex termeAnterieur)
+ + iterator()
+}
+
+class SuiteGeneraliseMandelbrot {
+ - maxIteration : int
+ - BinaryOperator<IComplex> function
+ + SuiteGeneraliseMandelbrot(IComplex z, premierTerme, int maxIteration, BinaryOperator<IComplex> fonction)
+ + derterminerTermeSuivant(IComplex termeAnterieur)
+ + iterator()
+}
+
+Iterable <|--[dashed] SuiteGeneraliseJulia
+IStrategieSuite <|--[dashed] SuiteGeneraliseJulia
+SuiteGeneraliseJulia *-- IComplex : - z
+SuiteGeneraliseJulia *-- IComplex : - c
+SuiteGeneraliseMandelbrot *-- IComplex : - z
+SuiteGeneraliseMandelbrot *-- IComplex : - premierTerme
+Iterable <|--[dashed] SuiteGeneraliseMandelbrot
+IStrategieSuite <|--[dashed] SuiteGeneraliseMandelbrot
+SuiteChaotiqueIterator *-- IStrategieSuiteChaotique : - suite
+SuiteChaotiqueIterator *-- IPoint : - point
+Iterator <|--[dashed] IStrategieSuiteChaotique
+Iterable <|--[dashed] SuiteChaotiqueCirculaire
+IStrategieSuiteChaotique <|--[dashed] SuiteChaotiqueCirculaire
+Iterable <|--[dashed] SuiteChaotiqueFeigenbaum
+IStrategieSuiteChaotique <|--[dashed] SuiteChaotiqueFeigenbaum
+IStrategieCouleurs <|--[dashed] PaletteRouge
+IStrategieCouleurs <|--[dashed] PaletteJaune
+IStrategieCouleurs <|--[dashed] CouleurDecorateur
+IStrategieCouleurs *-- CouleurDecorateur : - palette
+
+CouleurDecorateur <|--- CouleurDecorateurR
+CouleurDecorateur <|--- CouleurDecorateurV
+CouleurDecorateur <|--- CouleurDecorateurB
+
+IFigure <|--[dashed] FigureDecorator
+IFigure <|--[dashed] FigureComposite
+FigureComposite *-- AbstractFigure : - figures
+FigureDecorator <|--FigureTransformScaleDecorator
+FigureDecorator <|--FigureTransformRotateDecorator
+FigureDecorator <|--FigureTransformTranslationDecorator
+IFigure <|--[dashed] AbstractFigure
+AbstractFigure <|-- FigureRectangle
+IPoint <|---[dashed] ComplexAdaptateur
+AbstractFigure <|-- FigureCercle
+IComplex *--- ComplexAdaptateur : - complex
+IPoint <|---[dashed] Point
+IFractalImage *-- Pixel : - image
+SuiteIterator *-- IStrategieSuite : suite
+Iterator <--[dashed] SuiteIterator
+FigureRectangle <|-- FigureCarre
+IFractalImage <--[dashed] AdaptateurImage
+AdaptateurImage *-- BufferedImage : - image
+
+SuiteIterator <--[dashed] SuiteMandelbrot
+Iterable <--[dashed] SuiteMandelbrot
+
+SuiteIterator <--[dashed] SuiteJulia
+Iterable <--[dashed] SuiteJulia
+
+SuiteIterator *-- SuiteJulia : iterator
+SuiteIterator *-- SuiteMandelbrot : iterator
+IComplex *-- SuiteIterator: - terme
+IComplex *-- SuiteJulia : - c
+IComplex *-- SuiteJulia : - z
+IComplex *-- SuiteMandelbrot : - z
+
 IComplex <|---[dashed]Complex
 IPlanComplex<|---[dashed]PlanComplexDecorator
 PlanComplexDecorator<|---PlanComplexTranslationDecorator
 PlanComplexDecorator<|---PlanComplexZoomDecorator
 IPlanComplex<|----[dashed]PlanComplex
 PlanComplexDecorator *-- PlanComplex : use
-PlanComplexZoomDecorator *-- Complex : use
-PlanComplexTranslationDecorator *-- Complex : use
-
-note "On a choisi un décorateur pour AJOUTER une translation aux nombres complexes" as N1
-note "On a choisi un décorateur pour AJOUTER le zoom aux nombres complexes" as N2
-PlanComplexTranslationDecorator .. N1
-PlanComplexZoomDecorator .. N2
+PlanComplexZoomDecorator *-- IComplex : - constante
+PlanComplexTranslationDecorator *-- IComplex : - constante
 @enduml
 ```
+
 
 ## Description
 

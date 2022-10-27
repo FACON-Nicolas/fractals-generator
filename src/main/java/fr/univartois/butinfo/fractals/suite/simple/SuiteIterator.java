@@ -1,4 +1,4 @@
-package fr.univartois.butinfo.fractals;
+package fr.univartois.butinfo.fractals.suite.simple;
 
 import fr.univartois.butinfo.fractals.complex.IComplex;
 
@@ -35,5 +35,15 @@ public class SuiteIterator implements Iterator<IComplex> {
             return terme;
         }
         return null;
+    }
+    
+    
+    /**
+     * Donne l'attribut nbInteration de cette instance de SuiteIterator.
+     *
+     * @return L'attribut nbInteration de cette instance de SuiteIterator.
+     */
+    public int getNbInteration() {
+        return nbInteration;
     }
 }

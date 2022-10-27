@@ -1,6 +1,8 @@
-package fr.univartois.butinfo.fractals;
+package fr.univartois.butinfo.fractals.suite.simple;
 
 import fr.univartois.butinfo.fractals.complex.IComplex;
+import fr.univartois.butinfo.fractals.suite.simple.IStrategieSuite;
+import fr.univartois.butinfo.fractals.suite.simple.SuiteIterator;
 
 import java.util.Iterator;
 
@@ -29,5 +31,15 @@ public class SuiteJulia implements IStrategieSuite, Iterable<IComplex> {
     @Override
     public Iterator<IComplex> iterator() {
         return new SuiteIterator(this, z, maxIteration);
+    }
+    
+    
+    /**
+     * Donne l'attribut maxIteration de cette instance de SuiteJulia.
+     *
+     * @return L'attribut maxIteration de cette instance de SuiteJulia.
+     */
+    public int getMaxIteration() {
+        return maxIteration;
     }
 }
