@@ -17,24 +17,28 @@ package fr.univartois.butinfo.fractals.complex;
  */
 public class PlanComplexTranslationDecorator extends PlanComplexDecorator {
 
+    /**
+     * Un nombre complex.
+     */
     private final IComplex constante;
     
     /**
      * Crée une nouvelle instance de PlanComplexTranslationDecorator.
      * 
-     * @param plan
+     * @param plan Un plan complex.
      * 
-     * @param width
+     * @param width La largeur du plan.
      * 
-     * @param height
+     * @param height La hauteur du plan.
+     * @param constante Un nombre complexe constant.
      */
     protected PlanComplexTranslationDecorator(IPlanComplex plan, int width, int height, IComplex constante) {
-        // TODO Auto-generated constructor stub.
         super(plan, width, height);
         this.constante = constante;
     }
 
 
+    @Override
     public IComplex asComplex(int row, int column) {
         return super.asComplex(row, column).add(constante);
     }
