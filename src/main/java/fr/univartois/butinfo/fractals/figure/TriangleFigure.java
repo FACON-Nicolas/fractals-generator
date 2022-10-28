@@ -27,8 +27,8 @@ public class TriangleFigure extends AbstractFigure {
     public TriangleFigure(int x, int y, Color couleur, double cote) {
         super(x, y, couleur);
         this.premiereLigne = new LineFigure(x, y, couleur, (int) (x+cote), y);
-        this.deuxiemeLigne = new LineFigure(x, y, couleur, x + (int) (cote / 2), y + getHauteur()); 
-        this.troisiemeLigne = new LineFigure((int) (x+cote), y, couleur, (int) (x+cote) - (int) (cote / 2), y + getHauteur()); 
+        this.deuxiemeLigne = new LineFigure(x, y, couleur, x + (int) (cote / 2), y - getHauteur()); 
+        this.troisiemeLigne = new LineFigure((int) (x+cote), y, couleur, (int) (x+cote) - (int) (cote / 2), y - getHauteur()); 
     }
     
     public int getHauteur() {
