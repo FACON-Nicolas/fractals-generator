@@ -12,11 +12,20 @@ public class SuiteJulia implements IStrategieSuite, Iterable<IComplex> {
      * Premier terme de la suite
      */
     private final IComplex z;
+    /**
+     * Le nombre d'itérations maximum de la suite.
+     */
     private final int maxIteration;
     /**
      * Constante utilisée dans les calculs
      */
     private final IComplex c;
+    /**
+     * Crée une nouvelle instance de SuiteJulia.
+     * @param z Un nombre complex.
+     * @param c Un deuxième nombre Complex.
+     * @param maxIteration Un nombre d'itérations max.
+     */
     public SuiteJulia(IComplex z, IComplex c, int maxIteration) {
         this.c = c;
         this.z = z;

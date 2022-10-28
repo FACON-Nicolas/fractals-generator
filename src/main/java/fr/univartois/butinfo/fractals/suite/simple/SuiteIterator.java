@@ -9,12 +9,27 @@ import java.util.Iterator;
  */
 public class SuiteIterator implements Iterator<IComplex> {
 
+    /**
+     * Une suite
+     */
     private final IStrategieSuite suite;
+    /**
+     * Un terme de la suite.
+     */
     private IComplex terme;
+    /**
+     * Le nombre d'itérations max de la suite.
+     */
     private final int iterationMax;
 
     private int nbInteration;
 
+    /**
+     * Crée une nouvelle instance de SuiteIterator.
+     * @param suite Le nom d'une suite.
+     * @param terme Un terme de la suite.
+     * @param iterationMax Le nombre d'itérations maximum.
+     */
     public SuiteIterator(IStrategieSuite suite, IComplex terme, int iterationMax) {
         this.suite = suite;
         this.terme = terme;

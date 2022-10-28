@@ -5,12 +5,22 @@ import fr.univartois.butinfo.fractals.complex.IComplex;
 import java.util.Iterator;
 import java.util.function.BinaryOperator;
 
+/**
+ * La type Suite Generalisée de Julia
+ *
+ * @author Arnaud
+ *
+ * @version 0.1.0
+ */
 public class SuiteGeneraliseJulia implements IStrategieSuite, Iterable<IComplex> {
 
     /**
      * Premier terme de la suite
      */
     private final IComplex z;
+    /**
+     * Le nombre maximum d'itérations.
+     */
     private final int maxIteration;
 
     /**
@@ -23,6 +33,13 @@ public class SuiteGeneraliseJulia implements IStrategieSuite, Iterable<IComplex>
      */
     private final BinaryOperator<IComplex> fonction;
 
+    /**
+     * Crée une nouvelle instance de SuiteGeneraliseJulia.
+     * @param z Un complexe.
+     * @param c Un complexe.
+     * @param maxIteration Le nombre maximum d'itérations.
+     * @param fonction Un binaryOperator.
+     */
     public SuiteGeneraliseJulia(IComplex z, IComplex c, int maxIteration, BinaryOperator<IComplex> fonction) {
         this.c = c;
         this.z = z;
