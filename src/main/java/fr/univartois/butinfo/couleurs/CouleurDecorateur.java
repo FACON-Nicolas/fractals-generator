@@ -8,8 +8,15 @@ import java.awt.Color;
  *C'est un décorateur.
  */
 public abstract class CouleurDecorateur implements IStrategieCouleurs{
-	 protected IStrategieCouleurs palette;
+	 /**
+	 * L'attribut palette est une isntance de palette de couleurs
+	 */
+	protected IStrategieCouleurs palette;
 	 
+	/**
+	 * Crée une nouvelle instance de CouleurDecorateur.
+	 * @param palette une palette de couleurs
+	 */
 	public CouleurDecorateur(IStrategieCouleurs palette) {
 		this.palette = palette;
 	}
