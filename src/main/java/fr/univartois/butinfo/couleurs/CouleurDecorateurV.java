@@ -3,7 +3,10 @@ package fr.univartois.butinfo.couleurs;
 import java.awt.Color;
 
 public class CouleurDecorateurV extends CouleurDecorateur {
-	
+	/**
+	 * Crée une instance de la classe 
+	 * @param palette une palette de couleurs
+	 */
 	public CouleurDecorateurV(IStrategieCouleurs palette) {
 		super(palette);
 	}
