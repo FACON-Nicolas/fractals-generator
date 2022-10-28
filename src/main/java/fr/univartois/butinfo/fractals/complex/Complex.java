@@ -3,7 +3,7 @@ package fr.univartois.butinfo.fractals.complex;
 import java.util.Objects;
 
 /**
- * Permet de générer un complex.
+ * Permet de générer un complexe.
  *
  * @author Arnaud
  *
