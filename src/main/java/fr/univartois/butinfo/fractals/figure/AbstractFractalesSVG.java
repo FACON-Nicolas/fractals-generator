@@ -81,7 +81,7 @@ public abstract class AbstractFractalesSVG {
 	 * @param file Le fichier SVG dans lequel sera généré la fractale.
 	 * @param figure La figure géométrique qu'utilise la fractale.
 	 * @return file , le fichier passé en paramètre avec la figure en svg écrite.
-	 * @throws IOException
+	 * @throws IOException une exception.
 	 */
     protected Writer creerFormesBase(Writer file, IFigure figure) throws IOException {
 		file.write(figure.getSVG());
