@@ -11,7 +11,7 @@ public abstract class AbstractFractalesSVG {
 	private IFigure figure;
 	private int iterations;
 	
-	public AbstractFractalesSVG(int width, int height,IFigure figure,int iterations) {
+	public AbstractFractalesSVG(int width, int height, IFigure figure,int iterations) {
 		this.width = width;
 		this.height = height;
 		this.figure=figure;
@@ -32,20 +32,21 @@ public abstract class AbstractFractalesSVG {
 	
 	protected Writer ecrireEnTete(Writer file) {
 		try {
-			file.write("<svg version='1.1' baseProfile='full width='"+width+"' height='"+height+"' xmlns='http://www.w3.org/2000/svg'>");
+			file.write("<svg version=\"1.1\" width=\""+width+"\" height=\""+height+"\" xmlns=\"http://www.w3.org/2000/svg\">");
 			return file;
 		} catch (IOException e) {
 			System.err.println("problème dans l'écriture de l'en-tête");
 			e.printStackTrace();
 		}
 		return null;
-	};
+	}
+	
 	protected Writer creerFormesBase(Writer file, IFigure figure) throws IOException {
 		file.write(figure.getSVG());
 		return file;
-	};
+	}
 	
-	public abstract Writer formerFractale(Writer file, IFigure figure,int iterations);
+	public abstract Writer formerFractale(Writer file, IFigure figure,int iterations) throws IOException;
 	
 	protected Writer fermerSvg(Writer file) {
 		try {
@@ -56,7 +57,8 @@ public abstract class AbstractFractalesSVG {
 			e.printStackTrace();
 		}
 		return null;
-	};
+	}
+	
 	protected void fermerFichier(Writer file) {
 		try {
 			file.flush();
@@ -70,10 +72,10 @@ public abstract class AbstractFractalesSVG {
 			System.err.println("erreur dans la fermeture du fichier");
 			e.printStackTrace();
 		}
-	};
+	}
 	
 	
-	public final void creerFractalesSvg() {
+	public final void creerFractalesSvg() throws IOException {
 		Writer writer = ouvrirFichier();
 		writer = ecrireEnTete(writer);
 		try {
@@ -81,8 +83,18 @@ public abstract class AbstractFractalesSVG {
 		} catch (IOException e) {
 			System.err.println("problème dans la création de la forme de base");
 		}
-		writer = formerFractale(writer,figure,iterations);
+		writer = formerFractale(writer,figure,0);
 		writer =fermerSvg(writer);
 		fermerFichier(writer);
-		}
 	}
+	
+	
+    /**
+     * Donne l'attribut iterations de cette instance de AbstractFractalesSVG.
+     *
+     * @return L'attribut iterations de cette instance de AbstractFractalesSVG.
+     */
+    public int getIterations() {
+        return iterations;
+    }
+}
