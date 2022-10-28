@@ -18,6 +18,8 @@ import fr.univartois.butinfo.fractals.complex.PlanComplex;
 import fr.univartois.butinfo.fractals.complex.PlanComplexZoomDecorator;
 import fr.univartois.butinfo.fractals.complex.Point;
 import fr.univartois.butinfo.fractals.suite.simple.IStrategieSuite;
+import fr.univartois.butinfo.fractals.suite.simple.SuiteGeneraliseJulia;
+import fr.univartois.butinfo.fractals.suite.simple.SuiteGeneraliseMandelbrot;
 import fr.univartois.butinfo.fractals.suite.simple.SuiteIterator;
 import fr.univartois.butinfo.fractals.suite.simple.SuiteJulia;
 import fr.univartois.butinfo.fractals.suite.simple.SuiteMandelbrot;
@@ -175,9 +177,20 @@ public class ImageBuilder {
                     it = (SuiteIterator) ((SuiteJulia)(s)).iterator();
                     maxIt = ((SuiteJulia)(s)).getMaxIteration();
                 } else if ("mandelbrot".equalsIgnoreCase(nom)) {
+                    c = new Complex(-0.743643887037151, 0.13182590420533);                    
                     s = new SuiteMandelbrot(complex, 124);
                     it = (SuiteIterator) ((SuiteMandelbrot)(s)).iterator();
                     maxIt = ((SuiteMandelbrot)(s)).getMaxIteration();
+                } else if ("juliaGeneralise".equalsIgnoreCase(nom)) {
+                    c = new Complex(-0.6078,0.4380);                    
+                    s = new SuiteGeneraliseJulia(complex, c, 124, (z, e) -> z.multiply(z).add(e));
+                    it = (SuiteIterator) ((SuiteGeneraliseJulia)(s)).iterator();
+                    maxIt = ((SuiteGeneraliseJulia)(s)).getMaxIteration();
+                } else if ("mandelbrotGeneralise".equalsIgnoreCase(nom)) {    
+                    c = new Complex(-0.743643887037151, 0.13182590420533);                    
+                    s = new SuiteGeneraliseMandelbrot(complex, 124, (z, e) -> (z.multiply(z).add(z)).divide(z.multiply(z).multiply(z).add(e)));
+                    it = (SuiteIterator) ((SuiteGeneraliseMandelbrot)(s)).iterator();
+                    maxIt = ((SuiteGeneraliseMandelbrot)(s)).getMaxIteration();
                 } else {
                     throw new IllegalArgumentException();
                 }
