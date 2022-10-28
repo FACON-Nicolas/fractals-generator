@@ -218,6 +218,10 @@ public class ImageBuilder {
         return path;
     }
    
+    /**
+     * Méthode qui permet de générer l'image.
+     * @throws IOException une exception
+     */
     public void generation() throws IOException {
         Complex c = new Complex(-0.4,  0.6);
         int nbIt = 0;
