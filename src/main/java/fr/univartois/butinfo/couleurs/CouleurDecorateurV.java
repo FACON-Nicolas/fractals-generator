@@ -2,6 +2,14 @@ package fr.univartois.butinfo.couleurs;
 
 import java.awt.Color;
 
+/**
+  * La classe CouleurDecorateurV permet de générer un masque enlvant le vert sur une 
+ * palette de couleur.
+ *
+ * @author Elsa
+ *
+ * @version 0.1.0
+ */
 public class CouleurDecorateurV extends CouleurDecorateur {
 	/**
 	 * Crée une instance de la classe 
