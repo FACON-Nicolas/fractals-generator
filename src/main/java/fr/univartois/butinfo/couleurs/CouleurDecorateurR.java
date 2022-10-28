@@ -2,6 +2,14 @@ package fr.univartois.butinfo.couleurs;
 
 import java.awt.Color;
 
+/**
+  * La classe CouleurDecorateurR permet de générer un masque enlvant le rouge sur une 
+ * palette de couleur.
+ *
+ * @author Elsa
+ *
+ * @version 0.1.0
+ */
 public class CouleurDecorateurR extends CouleurDecorateur{
 	/**
 	 * Crée une instance de la classe 
