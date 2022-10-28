@@ -18,7 +18,7 @@ package fr.univartois.butinfo.fractals.complex;
 public class ComplexAdaptateur implements IPoint {
     
     /**
-     * L'attribut complex...
+     * Un complexe.
      */
     private final IComplex complex;
     
