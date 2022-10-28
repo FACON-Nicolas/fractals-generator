@@ -1,7 +1,11 @@
 package fr.univartois.butinfo.couleurs;
 
 import java.awt.Color;
-
+/**
+ * 
+ * @author Elsa
+ *La classe PaletteBleue permet de créer une palette de couleurs de couleur rose.
+ */
 public class PaletteRose implements IStrategieCouleurs {
 
 	/**
