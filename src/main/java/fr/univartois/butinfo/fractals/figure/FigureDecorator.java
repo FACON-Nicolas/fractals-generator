@@ -17,12 +17,23 @@ package fr.univartois.butinfo.fractals.figure;
  */
 public abstract class FigureDecorator implements IFigure {
     
+    /**
+     * Une figure.
+     */
     private final IFigure figure;
     
+    /**
+     * Crée une nouvelle instance de FigureDecorator.
+     * @param figure Une figure
+     */
     public FigureDecorator(IFigure figure) {
         this.figure = figure;
     }
     
+    /**
+     * méthode permettant de retourner une figure.
+     * @return figure Une figure
+     */
     protected IFigure getFigure() {
         return figure;
     }

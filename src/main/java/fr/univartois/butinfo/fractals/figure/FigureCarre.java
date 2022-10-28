@@ -20,11 +20,10 @@ public class FigureCarre extends FigureRectangle {
 
     /**
      * Crée une nouvelle instance de FigureCarre.
-     * @param x
-     * @param y
-     * @param color
-     * @param width
-     * @param height
+     * @param x Une abscisse.
+     * @param y Une ordonnée.
+     * @param color Une couleur.
+     * @param width La largeur de la figure.
      */
     public FigureCarre(int x, int y, Color color, int width) {
         // TODO Auto-generated constructor stub.
