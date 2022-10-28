@@ -8,6 +8,11 @@ import java.awt.Color;
  */
 public interface IStrategieCouleurs {
 
+	/**
+	 * @param nbItMax le nombre d'itérations maximium.
+	 * @param nbIterations le nombre actuel d'itérations.
+	 * @return Color instance de la classe Color.
+	 */
 	public Color palette(int nbItMax, int nbIterations);
 	
 }
