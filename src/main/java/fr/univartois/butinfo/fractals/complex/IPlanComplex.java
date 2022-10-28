@@ -11,7 +11,7 @@ package fr.univartois.butinfo.fractals.complex;
 /**
  * Le type IplanComplex
  *
- * @author nicolas
+ * @author Nicolas
  *
  * @version 0.1.0
  */
