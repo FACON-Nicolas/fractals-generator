@@ -34,6 +34,16 @@ public class TriangleFigure extends AbstractFigure {
     public int getHauteur() {
         return (int) (0.886 * cote);
     }
+    
+    
+    /**
+     * Donne l'attribut cote de cette instance de TriangleFigure.
+     *
+     * @return L'attribut cote de cette instance de TriangleFigure.
+     */
+    public double getCote() {
+        return cote;
+    }
 
     /*
      * (non-Javadoc)
@@ -45,8 +55,40 @@ public class TriangleFigure extends AbstractFigure {
         return "<polygon points=\"" + premiereLigne.x + ", " + premiereLigne.y +
                 " " +  deuxiemeLigne.x + ", " + deuxiemeLigne.y +
                 " " +  troisiemeLigne.x + ", " + troisiemeLigne.y +
-                " fill=\" rgb(" + getColor().getRed() + ", " + getColor().getGreen() + ", " + getColor().getBlue() + ")"+ "\"/>";
+                "\" fill=\" rgb(" + getColor().getRed() + ", " + getColor().getGreen() + ", " + getColor().getBlue() + ")"+ "\"/>";
     }
+    
+    
+    /**
+     * Donne l'attribut premiereLigne de cette instance de TriangleFigure.
+     *
+     * @return L'attribut premiereLigne de cette instance de TriangleFigure.
+     */
+    public LineFigure getPremiereLigne() {
+        return premiereLigne;
+    }
+    
+    
+    /**
+     * Donne l'attribut deuxiemeLigne de cette instance de TriangleFigure.
+     *
+     * @return L'attribut deuxiemeLigne de cette instance de TriangleFigure.
+     */
+    public LineFigure getDeuxiemeLigne() {
+        return deuxiemeLigne;
+    }
+    
+    
+    /**
+     * Donne l'attribut troisiemeLigne de cette instance de TriangleFigure.
+     *
+     * @return L'attribut troisiemeLigne de cette instance de TriangleFigure.
+     */
+    public LineFigure getTroisiemeLigne() {
+        return troisiemeLigne;
+    }
+    
+    
 
 }
 
