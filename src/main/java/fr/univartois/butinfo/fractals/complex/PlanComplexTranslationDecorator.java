@@ -8,6 +8,9 @@
 package fr.univartois.butinfo.fractals.complex;
 
 
+import fr.univartois.butinfo.fractals.image.IFractalImage;
+import fr.univartois.butinfo.fractals.image.Pixel;
+
 /**
  * Le type PlanComplexTranslationDecorator
  *
@@ -29,14 +32,27 @@ public class PlanComplexTranslationDecorator extends PlanComplexDecorator {
      * @param height
      */
     protected PlanComplexTranslationDecorator(IPlanComplex plan, int width, int height, IComplex constante) {
-        // TODO Auto-generated constructor stub.
         super(plan, width, height);
         this.constante = constante;
     }
 
 
+    @Override
     public IComplex asComplex(int row, int column) {
         return super.asComplex(row, column).add(constante);
+    }
+
+    @Override
+    public Pixel asPixel(IComplex complex, IFractalImage fractalImage) {
+        return plan.asPixel(complex.subtract(constante), fractalImage);
+    }
+
+    @Override
+    public Pixel asPixel(IPoint point, IFractalImage fractalImage) {
+        return plan.asPixel(new Point(
+                point.getX() - constante.getRealPart(),
+                point.getY() - constante.getImaginaryPart()),
+                fractalImage);
     }
 
 }

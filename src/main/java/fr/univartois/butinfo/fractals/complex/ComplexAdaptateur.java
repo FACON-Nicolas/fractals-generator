@@ -58,5 +58,13 @@ public class ComplexAdaptateur implements IPoint {
         return Math.sqrt(x + y);
     }
 
+    /**
+     * Renvoie le nombre complexe du point
+     * @return un nombre complexe
+     */
+    public IComplex toComplex(){
+        return complex;
+    }
+
 }
 

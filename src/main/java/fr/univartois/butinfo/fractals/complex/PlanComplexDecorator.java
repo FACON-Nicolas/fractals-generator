@@ -8,6 +8,9 @@
 package fr.univartois.butinfo.fractals.complex;
 
 
+import fr.univartois.butinfo.fractals.image.IFractalImage;
+import fr.univartois.butinfo.fractals.image.Pixel;
+
 /**
  * Le type PlanComplexDecorator
  *
@@ -17,7 +20,7 @@ package fr.univartois.butinfo.fractals.complex;
  */
 public abstract class PlanComplexDecorator implements IPlanComplex {
     
-    private IPlanComplex plan;
+    protected IPlanComplex plan;
     private int width;
     private int height;
     

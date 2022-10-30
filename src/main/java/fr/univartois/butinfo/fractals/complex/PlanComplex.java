@@ -55,23 +55,23 @@ public class PlanComplex implements IPlanComplex {
         return new Complex(re, im);
     }
 
-
+    @Override
     public Pixel asPixel(IComplex complex, IFractalImage fractalImage){
         int x = (int) (- complex.getImaginaryPart() + (height / 2.0) - 0.5);
         int y = (int) (complex.getRealPart() + (width / 2.0) - 0.5);
-        if ((x <= width) && (y<= height))
+        if ((x <= fractalImage.getWidth()) && (y <= fractalImage.getHeight()) && x >= 0 && y >= 0)
             return new Pixel(fractalImage, x, y);
         return null;
     }
 
+    @Override
     public Pixel asPixel(IPoint point, IFractalImage fractalImage){
-        int x = (int) point.getX();
-        int y = (int) point.getY();
-        if ((x <= width) && (y<= height))
+        int x = (int) (- point.getX() + (height / 2.0) - 0.5);
+        int y = (int) (point.getY() + (width / 2.0) - 0.5);
+        if ((x < fractalImage.getWidth()) && (y < fractalImage.getHeight()) && x >= 0 && y >= 0)
             return new Pixel(fractalImage, x, y);
         return null;
     }
-
 
     /*
      * (non-Javadoc)

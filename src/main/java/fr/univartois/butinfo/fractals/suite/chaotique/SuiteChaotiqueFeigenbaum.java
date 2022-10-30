@@ -27,4 +27,13 @@ public class SuiteChaotiqueFeigenbaum implements IStrategieSuiteChaotique, Itera
     public Iterator<IPoint> iterator() {
         return new SuiteChaotiqueIterator(this, interationMax, premierPoint);
     }
+
+    /**
+     * Donne l'attribut maxIteration de cette instance de SuiteChaotiqueCirculaire.
+     *
+     * @return L'attribut maxIteration de cette instance de SuiteChaotiqueCirculaire.
+     */
+    public int getMaxIteration() {
+        return interationMax;
+    }
 }

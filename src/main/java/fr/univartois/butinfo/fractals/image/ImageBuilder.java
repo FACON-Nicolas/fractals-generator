@@ -11,16 +11,10 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import fr.univartois.butinfo.couleurs.IStrategieCouleurs;
-import fr.univartois.butinfo.fractals.complex.Complex;
-import fr.univartois.butinfo.fractals.complex.IComplex;
-import fr.univartois.butinfo.fractals.complex.IPoint;
-import fr.univartois.butinfo.fractals.complex.PlanComplex;
-import fr.univartois.butinfo.fractals.complex.PlanComplexZoomDecorator;
-import fr.univartois.butinfo.fractals.complex.Point;
-import fr.univartois.butinfo.fractals.suite.simple.IStrategieSuite;
-import fr.univartois.butinfo.fractals.suite.simple.SuiteIterator;
-import fr.univartois.butinfo.fractals.suite.simple.SuiteJulia;
-import fr.univartois.butinfo.fractals.suite.simple.SuiteMandelbrot;
+import fr.univartois.butinfo.fractals.complex.*;
+import fr.univartois.butinfo.fractals.suite.chaotique.SuiteChaotiqueCirculaire;
+import fr.univartois.butinfo.fractals.suite.chaotique.SuiteChaotiqueFeigenbaum;
+import fr.univartois.butinfo.fractals.suite.simple.*;
 
 /**
  * Le type GenerateurImageBuilder
@@ -163,7 +157,7 @@ public class ImageBuilder {
         int maxIt = 0;
         PlanComplex plan = new PlanComplex(width, height);
         IStrategieSuite s = null;
-        SuiteIterator it;
+        SuiteIterator it = null;
         PlanComplexZoomDecorator planZoom = new PlanComplexZoomDecorator(echelle, plan, width, height);
         IFractalImage image = new AdaptateurImage(new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB));
         for (int i = 0; i < width; i++) {
@@ -178,11 +172,25 @@ public class ImageBuilder {
                     s = new SuiteMandelbrot(complex, 124);
                     it = (SuiteIterator) ((SuiteMandelbrot)(s)).iterator();
                     maxIt = ((SuiteMandelbrot)(s)).getMaxIteration();
-                } else {
+                } else if ("feigenbaum".equalsIgnoreCase(nom)) {
+                    SuiteChaotiqueFeigenbaum suite = new SuiteChaotiqueFeigenbaum(new ComplexAdaptateur(complex), 124);
+                    maxIt = suite.getMaxIteration();
+                    CouleurPixel couleurPixel = new CouleurPixel(suite, 124, planZoom, image, palette, 5, 0.05f);
+                    couleurPixel.parcourir();
+                } else if ("circulaire".equalsIgnoreCase(nom)) {
+                    SuiteChaotiqueCirculaire suite = new SuiteChaotiqueCirculaire(new ComplexAdaptateur(complex), 124);
+                    maxIt = suite.getMaxIteration();
+                    CouleurPixel couleurPixel = new CouleurPixel(suite, 124, planZoom, image, palette, 5, 0.05f);
+                    couleurPixel.parcourir();
+            }
+                else {
                     throw new IllegalArgumentException();
                 }
-                while (it.hasNext()) it.next();
-                image.setColor(j, i, palette.palette(maxIt, it.getNbInteration()));
+                if (it != null) {
+                    while (it.hasNext()) it.next();
+                    image.setColor(j, i, palette.palette(maxIt, it.getNbInteration()));
+                }
+
             }
         }
         image.saveAs(path);

@@ -8,6 +8,9 @@
 package fr.univartois.butinfo.fractals.complex;
 
 
+import fr.univartois.butinfo.fractals.image.IFractalImage;
+import fr.univartois.butinfo.fractals.image.Pixel;
+
 /**
  * Le type IplanComplex
  *
@@ -30,6 +33,23 @@ public interface IPlanComplex {
      * @return nombre complexe a partir d'un pixel.
      */
     IComplex asComplex(int row, int column);
+
+    /**
+     * Permet de transformer un nombre complexe en pixel
+     * @param complex nombre complexe que l'on veut transformer
+     * @param fractalImage image où se situe le pixel
+     * @return un pixel de l'image
+     */
+    Pixel asPixel(IComplex complex, IFractalImage fractalImage);
+
+    /**
+     * Permet de transformer un point en pixel
+     * @param point point que l'on veut transformer
+     * @param fractalImage image où se situe le pixel
+     * @return un pixel de l'image
+     */
+    Pixel asPixel(IPoint point, IFractalImage fractalImage);
+
     
     /**
      * permet d'obtenir la taille
