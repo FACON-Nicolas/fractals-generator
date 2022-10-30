@@ -5,19 +5,50 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
 
+/**
+ * Cette classe est la classe abstraite du patron de conception méthode. Elle permet de créer une 
+ * fractale à base de figures géométriques dans un fichier.
+ *
+ * @author Elsa
+ *
+ * @version 0.1.0
+ */
 public abstract class AbstractFractalesSVG {
+	/**
+	 * La largeur de l'image de la fractale.
+	 */
 	private int width;
+	/**
+	 * La hauteur de l'image de la fractale.
+	 */
 	private int height;
+	/**
+	 * Une figure (carré, rond , triangle ...).
+	 */
 	private IFigure figure;
+	/**
+	 * L'attribut iterations définit le nombre d'itérations de la fractale à créer.
+	 */
 	private int iterations;
 	
-	public AbstractFractalesSVG(int width, int height, IFigure figure,int iterations) {
+	/**
+	 * Crée une nouvelle instance de AbstractFractalesSVG.
+	 * @param width La largeur de l'image de la fractale.
+	 * @param height La hauteur de l'image de la fractale.
+	 * @param figure La figure géométrique qu'utilise la fractale
+	 * @param iterations Le nombre d'itérations de la fractale.
+	 */
+	public AbstractFractalesSVG(int width, int height,IFigure figure,int iterations) {
 		this.width = width;
 		this.height = height;
 		this.figure=figure;
 		this.iterations = iterations;
 	}
 	
+	/**
+	 * Cette méthode permet d'ouvrir ou de créer et d'ouvrir le fichier dans lequel sera généré la fractale géométrique.
+	 * @return obj Le nouveau fichier svg.
+	 */
 	protected Writer ouvrirFichier() {
 		try {
 			PrintWriter  obj = new PrintWriter("file.svg");
@@ -30,6 +61,11 @@ public abstract class AbstractFractalesSVG {
 		
 	}
 	
+	/**
+	 * Méthode permettant d'écrire l'en-tête d'un fichier SVG.
+	 * @param file le fichier SVG dans lequel sera généré la fractale.
+	 * @return le fichier svg modifié.
+	 */
 	protected Writer ecrireEnTete(Writer file) {
 		try {
 			file.write("<svg version=\"1.1\" width=\""+width+"\" height=\""+height+"\" xmlns=\"http://www.w3.org/2000/svg\">");
@@ -39,15 +75,33 @@ public abstract class AbstractFractalesSVG {
 			e.printStackTrace();
 		}
 		return null;
-	}
-	
-	protected Writer creerFormesBase(Writer file, IFigure figure) throws IOException {
+	};
+	/**
+	 * Cette méthode permet de définir la forme de base générée dans la fractale géométrique.
+	 * @param file Le fichier SVG dans lequel sera généré la fractale.
+	 * @param figure La figure géométrique qu'utilise la fractale.
+	 * @return file , le fichier passé en paramètre avec la figure en svg écrite.
+	 * @throws IOException une exception.
+	 */
+    protected Writer creerFormesBase(Writer file, IFigure figure) throws IOException {
 		file.write(figure.getSVG());
 		return file;
 	}
 	
-	public abstract Writer formerFractale(Writer file, IFigure figure,int iterations) throws IOException;
+	/**
+	 * La méthode permettant de former la fractale et de l'écrire dans le ficheir SVG.
+	 * @param file Le fichier SVG dans lequel sera généré la fractale.
+	 * @param figure La figure géométrique qu'utilise la fractale.
+	 * @param iterations Le nombre d'itérations de la fractale.
+	 * @return file , le fichier passé en paramètre avec la fractale générée dedans.
+	 */
+	public abstract Writer formerFractale(Writer file, IFigure figure,int iterations);
 	
+	/**
+	 * La méthode permettant de fermer le fichier SVG.
+	 * @param file Le fichier SVG dans lequel est généré la fractale.
+	 * @return file Le fichier passé en paramètre avec la balise fermant le fichier svg ajouté dedans.
+	 */
 	protected Writer fermerSvg(Writer file) {
 		try {
 			file.write("</svg>");
@@ -57,8 +111,11 @@ public abstract class AbstractFractalesSVG {
 			e.printStackTrace();
 		}
 		return null;
-	}
-	
+	};
+	/**
+	 * Méthode permettant de femrer le fichier SVG
+	 * @param file Le fichier SVG dans lequel est généré la fractale.
+	 */
 	protected void fermerFichier(Writer file) {
 		try {
 			file.flush();
@@ -75,7 +132,10 @@ public abstract class AbstractFractalesSVG {
 	}
 	
 	
-	public final void creerFractalesSvg() throws IOException {
+	/**
+	 * Méthode permettant de générer l'intégralité du fichier SVG du début à la fin. 
+	 */
+	public final void creerFractalesSvg() {
 		Writer writer = ouvrirFichier();
 		writer = ecrireEnTete(writer);
 		try {

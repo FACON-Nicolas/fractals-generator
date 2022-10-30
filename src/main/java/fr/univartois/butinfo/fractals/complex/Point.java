@@ -20,6 +20,11 @@ public class Point implements IPoint {
     private double x;
     private double y;
     
+    /**
+     * Crée une nouvelle instance de Point.
+     * @param x l'abscisse du point.
+     * @param y l'ordonnée du point.
+     */
     public Point(double x, double y) {
         this.x = x;
         this.y = y;
@@ -55,6 +60,9 @@ public class Point implements IPoint {
         return Math.sqrt(Math.pow((x-other.getX()), 2)+Math.pow((y-other.getY()), 2));
     }
     
+    /**
+     * @return Un complex avec comme coordonnées X et Y
+     */
     public IComplex fromPointToComplex() {
         return new Complex(x, y);
     }

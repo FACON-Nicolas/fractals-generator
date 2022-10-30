@@ -18,8 +18,18 @@ import java.awt.Color;
  */
 public class FigureCercle extends AbstractFigure {
     
+    /**
+     * Le rayon du cercle.
+     */
     private double rayon;
     
+    /**
+     * Crée une nouvelle instance de FigureCercle.
+     * @param x Une abscisse.
+     * @param y Une ordonnée.
+     * @param color Une couleur.
+     * @param rayon Le rayon du cercle.
+     */
     public FigureCercle(int x, int y, Color color, double rayon) {
         super(x, y, color);
         this.rayon = rayon;

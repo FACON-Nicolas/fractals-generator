@@ -11,16 +11,20 @@ package fr.univartois.butinfo.fractals.complex;
 /**
  * Le type ComplexAdaptateur
  *
- * @author nicolas
+ * @author Nicolas
  *
  * @version 0.1.0
  */
 public class ComplexAdaptateur implements IPoint {
     
+    /**
+     * Un complexe.
+     */
     private final IComplex complex;
     
     /**
      * Crée une nouvelle instance de ComplexAdaptateur.
+     * @param complex Un complexe.
      */
     public ComplexAdaptateur(IComplex complex) {
         this.complex = complex;

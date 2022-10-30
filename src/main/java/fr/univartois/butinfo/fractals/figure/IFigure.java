@@ -17,6 +17,9 @@ package fr.univartois.butinfo.fractals.figure;
  */
 public interface IFigure {
     
+    /**
+     * @return la figure en SVG.
+     */
     String getSVG();
 
 }

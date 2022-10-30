@@ -21,9 +21,9 @@ public class PlanComplexZoomDecorator extends PlanComplexDecorator {
     
     /**
      * Crée une nouvelle instance de PlanComplexZoomDecorator.
-     * @param plan
-     * @param width
-     * @param height
+     * @param plan Un plan complexe.
+     * @param width La largeur du plan.
+     * @param height La hauteur du plan.
      */
     public PlanComplexZoomDecorator(double constante, IPlanComplex plan, int width, int height) {
         // TODO Auto-generated constructor stub.
@@ -31,6 +31,7 @@ public class PlanComplexZoomDecorator extends PlanComplexDecorator {
         this.constante = constante;
     }
     
+    @Override
     public IComplex asComplex(int row, int column) {
         return super.asComplex(row, column).multiply(constante);
     }

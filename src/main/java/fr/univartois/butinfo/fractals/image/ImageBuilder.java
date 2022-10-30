@@ -36,58 +36,119 @@ import fr.univartois.butinfo.fractals.suite.simple.SuiteMandelbrot;
  */
 public class ImageBuilder {
     
+    /**
+     * La hauteur de l'image.
+     */
     private int height;
     
+    /**
+     * La largeur de l'image.
+     */
     private int width;
     
+    /**
+     * Le point central de l'image.
+     */
     private IPoint pointCentral;
     
+    /**
+     * Une palette de couleur.
+     */
     private IStrategieCouleurs palette;
     
+    /**
+     * Le chemin vers l'image.
+     */
     private String path;
 
+    /**
+     * Le nom de la suite utilisée.
+     */
     private String nom;
     
+    /**
+     * L'échelle de l'image.
+     */
     private double echelle;
     
+    /**
+     * On ne peut pas créer de constructeur dans un builder.
+     */
     private ImageBuilder() {
         
     }
     
+    /**
+     * @return Une nouvelle instance de ImageBuilder.
+     */
     public static ImageBuilder newInstance() {
         return new ImageBuilder();
     }
     
+    /**
+     * Cette méthode donne une échelle à l'image.
+     * @param echelle L'échelle de l'image
+     * @return Image avec une échelle.
+     */
     public ImageBuilder withEchelle(double echelle) {
         this.echelle = echelle;
         return this;
     }
     
+    /**
+     * Cette méthode donne une largeur à l'image.
+     * @param width Une largeur.
+     * @return la largeur de l'image.
+     */
     public ImageBuilder withWidth(int width) {
         this.width = width;
         return this;
     }
     
+    /**
+     * Cette méthode donne une hauteur à l'image.
+     * @param height Une hauteur.
+     * @return la hauteur de l'image.
+     */
     public ImageBuilder withHeight(int height) {
         this.height = height;
         return this;
     }
     
+    /**
+     * Cette méthode définit le point central de l'image.
+     * @param central un point.
+     * @return le point central de l'image.
+     */
     public ImageBuilder withPointCentral(IPoint central) {
         this.pointCentral = central;
         return this;
     }
     
+    /**
+     * Cette méthode définit la palette de couleur utilisée par l'image.
+     * @param palette Une palette.
+     * @return une palette.
+     */
     public ImageBuilder withPalette(IStrategieCouleurs palette) {
         this.palette = palette;
         return this;
     }
     
+    /**
+     * Méthode qui définit le chemin par lequel on retrouvera l'image de la fractale.
+     * @param path Un chemin.
+     * @return Le chemin vers le fichier qui contiendra l'image.
+     */
     public ImageBuilder withPath(String path) {
         this.path = path;
         return this;
     }
     
+    /**
+     * @param nom Le nom d'une suite.
+     * @return Le nom de la suite utilisée.
+     */
     public ImageBuilder withNom(String nom) {
         this.nom = nom;
         return this;
@@ -162,6 +223,10 @@ public class ImageBuilder {
         return path;
     }
    
+    /**
+     * Méthode qui permet de générer l'image.
+     * @throws IOException une exception
+     */
     public void generation() throws IOException {
         Complex c = new Complex(-0.4,  0.6);
         int nbIt = 0;

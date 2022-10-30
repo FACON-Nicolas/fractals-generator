@@ -8,6 +8,14 @@ public class FigureRectangle extends AbstractFigure{
 
     protected final int height;
 
+    /**
+     * Crée une nouvelle instance de FigureRectangle.
+     * @param x Une abscisse.
+     * @param y Une ordonnée.
+     * @param color Une couleur.
+     * @param width La largeur de la figure.
+     * @param height La hauteur de la figure.
+     */
     public FigureRectangle(int x, int y, Color color, int width, int height) {
         super(x, y, color);
 

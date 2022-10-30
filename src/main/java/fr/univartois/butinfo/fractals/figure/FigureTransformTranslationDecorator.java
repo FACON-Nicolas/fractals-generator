@@ -17,9 +17,21 @@ package fr.univartois.butinfo.fractals.figure;
  */
 public class FigureTransformTranslationDecorator extends FigureDecorator {
     
+    /**
+     * La largeur de la translation en X.
+     */
     private double translationX;
+    /**
+     * La largeur de la translation en Y.
+     */
     private double translationY;
     
+    /**
+     * Crée une nouvelle instance de FigureTransformTranslationDecorator.
+     * @param figure Une figure.
+     * @param translationX Une largeur de translation en X.
+     * @param translationY Une largeur de translationn en Y.
+     */
     public FigureTransformTranslationDecorator(IFigure figure, double translationX, double translationY) {
         super(figure);
         this.translationX = translationX;
