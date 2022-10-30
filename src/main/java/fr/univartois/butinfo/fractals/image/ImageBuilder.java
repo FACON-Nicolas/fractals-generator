@@ -17,6 +17,9 @@ import fr.univartois.butinfo.fractals.complex.IPoint;
 import fr.univartois.butinfo.fractals.complex.PlanComplex;
 import fr.univartois.butinfo.fractals.complex.PlanComplexZoomDecorator;
 import fr.univartois.butinfo.fractals.complex.Point;
+import fr.univartois.butinfo.fractals.figure.TapisSierpinski;
+import fr.univartois.butinfo.fractals.figure.TapisSierpinskiDiagonale;
+import fr.univartois.butinfo.fractals.figure.TriangleSierpinski;
 import fr.univartois.butinfo.fractals.suite.simple.IStrategieSuite;
 import fr.univartois.butinfo.fractals.suite.simple.SuiteGeneraliseJulia;
 import fr.univartois.butinfo.fractals.suite.simple.SuiteGeneraliseMandelbrot;
@@ -165,7 +168,7 @@ public class ImageBuilder {
         int maxIt = 0;
         PlanComplex plan = new PlanComplex(width, height);
         IStrategieSuite s = null;
-        SuiteIterator it;
+        SuiteIterator it = null;
         PlanComplexZoomDecorator planZoom = new PlanComplexZoomDecorator(echelle, plan, width, height);
         IFractalImage image = new AdaptateurImage(new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB));
         for (int i = 0; i < width; i++) {
@@ -191,11 +194,18 @@ public class ImageBuilder {
                     s = new SuiteGeneraliseMandelbrot(complex, 124, (z, e) -> (z.multiply(z).add(z)).divide(z.multiply(z).multiply(z).add(e)));
                     it = (SuiteIterator) ((SuiteGeneraliseMandelbrot)(s)).iterator();
                     maxIt = ((SuiteGeneraliseMandelbrot)(s)).getMaxIteration();
-                } else {
-                    throw new IllegalArgumentException();
-                }
+                } 
+                
                 while (it.hasNext()) it.next();
                 image.setColor(j, i, palette.palette(maxIt, it.getNbInteration()));
+                
+                if ("triangle".equalsIgnoreCase(nom)) {
+                    TriangleSierpinski.main(null);
+                } else if ("tapis".equalsIgnoreCase(nom)) {
+                    TapisSierpinski.main(null);
+                } else if ("tapisDiagonale".equalsIgnoreCase(nom)) {
+                    TapisSierpinskiDiagonale.main(null);
+                }
             }
         }
         image.saveAs(path);
