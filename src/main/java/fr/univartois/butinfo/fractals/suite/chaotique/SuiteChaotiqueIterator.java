@@ -60,4 +60,13 @@ public class SuiteChaotiqueIterator implements Iterator<IPoint> {
         }
         return null;
     }
+
+    /**
+     * Donne l'attribut nbInteration de cette instance de SuiteChaotiqueIterator.
+     *
+     * @return L'attribut nbInteration de cette instance de SuiteChaotiqueIterator.
+     */
+    public int getNbInteration() {
+        return nbInteration;
+    }
 }

@@ -35,27 +35,27 @@ import fr.univartois.butinfo.fractals.suite.simple.SuiteMandelbrot;
  * @version 0.1.0
  */
 public class ImageBuilder {
-    
+
     /**
      * La hauteur de l'image.
      */
     private int height;
-    
+
     /**
      * La largeur de l'image.
      */
     private int width;
-    
+
     /**
      * Le point central de l'image.
      */
     private IPoint pointCentral;
-    
+
     /**
      * Une palette de couleur.
      */
     private IStrategieCouleurs palette;
-    
+
     /**
      * Le chemin vers l'image.
      */
@@ -65,26 +65,26 @@ public class ImageBuilder {
      * Le nom de la suite utilisée.
      */
     private String nom;
-    
+
     /**
      * L'échelle de l'image.
      */
     private double echelle;
-    
+
     /**
      * On ne peut pas créer de constructeur dans un builder.
      */
     private ImageBuilder() {
-        
+
     }
-    
+
     /**
      * @return Une nouvelle instance de ImageBuilder.
      */
     public static ImageBuilder newInstance() {
         return new ImageBuilder();
     }
-    
+
     /**
      * Cette méthode donne une échelle à l'image.
      * @param echelle L'échelle de l'image
@@ -94,7 +94,7 @@ public class ImageBuilder {
         this.echelle = echelle;
         return this;
     }
-    
+
     /**
      * Cette méthode donne une largeur à l'image.
      * @param width Une largeur.
@@ -104,7 +104,7 @@ public class ImageBuilder {
         this.width = width;
         return this;
     }
-    
+
     /**
      * Cette méthode donne une hauteur à l'image.
      * @param height Une hauteur.
@@ -114,7 +114,7 @@ public class ImageBuilder {
         this.height = height;
         return this;
     }
-    
+
     /**
      * Cette méthode définit le point central de l'image.
      * @param central un point.
@@ -124,7 +124,7 @@ public class ImageBuilder {
         this.pointCentral = central;
         return this;
     }
-    
+
     /**
      * Cette méthode définit la palette de couleur utilisée par l'image.
      * @param palette Une palette.
@@ -134,7 +134,7 @@ public class ImageBuilder {
         this.palette = palette;
         return this;
     }
-    
+
     /**
      * Méthode qui définit le chemin par lequel on retrouvera l'image de la fractale.
      * @param path Un chemin.
@@ -144,7 +144,7 @@ public class ImageBuilder {
         this.path = path;
         return this;
     }
-    
+
     /**
      * @param nom Le nom d'une suite.
      * @return Le nom de la suite utilisée.
@@ -153,7 +153,7 @@ public class ImageBuilder {
         this.nom = nom;
         return this;
     }
-    
+
     /**
      * Donne l'attribut width de cette instance de ImageBuilder.
      *
@@ -162,8 +162,8 @@ public class ImageBuilder {
     public int getWidth() {
         return width;
     }
-    
-    
+
+
     /**
      * Donne l'attribut height de cette instance de ImageBuilder.
      *
@@ -172,8 +172,8 @@ public class ImageBuilder {
     public int getHeight() {
         return height;
     }
-    
-    
+
+
     /**
      * Donne l'attribut pointCentral de cette instance de ImageBuilder.
      *
@@ -182,8 +182,8 @@ public class ImageBuilder {
     public IPoint getPointCentral() {
         return pointCentral;
     }
-    
-    
+
+
     /**
      * Donne l'attribut palette de cette instance de ImageBuilder.
      *
@@ -192,8 +192,8 @@ public class ImageBuilder {
     public IStrategieCouleurs getPalette() {
         return palette;
     }
-    
-    
+
+
     /**
      * Donne l'attribut echelle de cette instance de ImageBuilder.
      *
@@ -202,8 +202,8 @@ public class ImageBuilder {
     public double getEchelle() {
         return echelle;
     }
-    
-    
+
+
     /**
      * Donne l'attribut nom de cette instance de ImageBuilder.
      *
@@ -212,8 +212,8 @@ public class ImageBuilder {
     public String getNom() {
         return nom;
     }
-    
-    
+
+
     /**
      * Donne l'attribut path de cette instance de ImageBuilder.
      *
@@ -222,7 +222,7 @@ public class ImageBuilder {
     public String getPath() {
         return path;
     }
-   
+
     /**
      * Méthode qui permet de générer l'image.
      * @throws IOException une exception
@@ -245,25 +245,25 @@ public class ImageBuilder {
                     it = (SuiteIterator) ((SuiteJulia)(s)).iterator();
                     maxIt = ((SuiteJulia)(s)).getMaxIteration();
                 } else if ("mandelbrot".equalsIgnoreCase(nom)) {
-                    c = new Complex(-0.743643887037151, 0.13182590420533);                    
+                    c = new Complex(-0.743643887037151, 0.13182590420533);
                     s = new SuiteMandelbrot(complex, 124);
                     it = (SuiteIterator) ((SuiteMandelbrot)(s)).iterator();
                     maxIt = ((SuiteMandelbrot)(s)).getMaxIteration();
                 } else if ("juliaGeneralise".equalsIgnoreCase(nom)) {
-                    c = new Complex(-0.6078,0.4380);                    
+                    c = new Complex(-0.6078,0.4380);
                     s = new SuiteGeneraliseJulia(complex, c, 124, (z, e) -> z.multiply(z).add(e));
                     it = (SuiteIterator) ((SuiteGeneraliseJulia)(s)).iterator();
                     maxIt = ((SuiteGeneraliseJulia)(s)).getMaxIteration();
-                } else if ("mandelbrotGeneralise".equalsIgnoreCase(nom)) {    
-                    c = new Complex(-0.743643887037151, 0.13182590420533);                    
+                } else if ("mandelbrotGeneralise".equalsIgnoreCase(nom)) {
+                    c = new Complex(-0.743643887037151, 0.13182590420533);
                     s = new SuiteGeneraliseMandelbrot(complex, 124, (z, e) -> (z.multiply(z).add(z)).divide(z.multiply(z).multiply(z).add(e)));
                     it = (SuiteIterator) ((SuiteGeneraliseMandelbrot)(s)).iterator();
                     maxIt = ((SuiteGeneraliseMandelbrot)(s)).getMaxIteration();
-                } 
-                
+                }
+
                 while (it.hasNext()) it.next();
                 image.setColor(j, i, palette.palette(maxIt, it.getNbInteration()));
-                
+
                 if ("triangle".equalsIgnoreCase(nom)) {
                     TriangleSierpinski.main(null);
                 } else if ("tapis".equalsIgnoreCase(nom)) {
@@ -275,6 +275,6 @@ public class ImageBuilder {
         }
         image.saveAs(path);
     }
- 
+
 }
 
