@@ -40,4 +40,13 @@ public class SuiteGeneraliseJulia implements IStrategieSuite, Iterable<IComplex>
         return new SuiteIterator(this, z, maxIteration);
     }
 
+    
+    /**
+     * Donne l'attribut maxIteration de cette instance de SuiteGeneraliseJulia.
+     *
+     * @return L'attribut maxIteration de cette instance de SuiteGeneraliseJulia.
+     */
+    public int getMaxIteration() {
+        return maxIteration;
+    }
 }

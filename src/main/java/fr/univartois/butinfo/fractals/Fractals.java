@@ -28,6 +28,7 @@ import fr.cril.cli.annotations.Description;
 import fr.cril.cli.annotations.LongName;
 import fr.cril.cli.annotations.ShortName;
 import fr.univartois.butinfo.couleurs.IStrategieCouleurs;
+import fr.univartois.butinfo.couleurs.PaletteBleue;
 import fr.univartois.butinfo.couleurs.PaletteJaune;
 import fr.univartois.butinfo.couleurs.PaletteRose;
 import fr.univartois.butinfo.fractals.complex.Point;
@@ -205,6 +206,8 @@ public final class Fractals {
             couleurs = new PaletteJaune();
         } else if (paletteName.equalsIgnoreCase("rose")) {
             couleurs = new PaletteRose();
+        } else if (paletteName.equalsIgnoreCase("bleue")) {
+        	couleurs = new PaletteBleue();
         }
         ImageBuilder builder = ImageBuilder.newInstance().withHeight(height).withWidth(width)
                 .withNom(fractaleName).withPalette(couleurs).withPointCentral(new Point(focusX, focusY))
