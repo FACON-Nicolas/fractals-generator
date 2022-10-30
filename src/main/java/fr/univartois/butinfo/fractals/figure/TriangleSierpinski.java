@@ -8,10 +8,10 @@
 package fr.univartois.butinfo.fractals.figure;
 
 import java.awt.Color;
-import java.awt.Rectangle;
-import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Le type TriangleSierpinski
@@ -22,7 +22,7 @@ import java.io.Writer;
  */
 public class TriangleSierpinski extends AbstractFractalesSVG {
     
-    
+    private List<LineFigure> figures = new ArrayList<>();
     
     public TriangleSierpinski(int width, int height, IFigure figure, int iteration) {
         super(width, height, figure, iteration);
@@ -35,24 +35,35 @@ public class TriangleSierpinski extends AbstractFractalesSVG {
      */
     @Override
     public Writer formerFractale(Writer file, IFigure figure, int iterations) throws IOException {
-        if (iterations == getIterations()) return file;
-        creerFormesBase(file, figure);
-        int x1 = ((LineFigure)figure).x;
-        int y1 = ((LineFigure)figure).y;
-        int x2 = (int) x1 + ((LineFigure)figure).getLongueur();
-        int y2 = y1;
-        int x3 = (x1 + x2) / 2;
-        int y3 = y1 + (int) (Math.sqrt(3) * (((LineFigure)figure).getLongueur() / 2));
-        
-        formerFractale(file, new LineFigure(x1, y1, Color.black, x2, y2), iterations+1);
-        formerFractale(file, new LineFigure(x1, y1, Color.black, x3, y3), iterations+1);
-        formerFractale(file, new LineFigure(x2, y2, Color.black, x3, y3), iterations+1);
+        LineFigure fig = (LineFigure) figure;
+        triangle(fig.x, fig.y, fig.getLongueur(), iterations);
+        for (IFigure f : figures)
+            creerFormesBase(file, f);
         return file;
     }
+    
+    public void triangle(double x, double y, double longueur, int n) {
 
+        if (n == getIterations()) return;
+        
+        double x1 = x;
+        double y1 = y;
+        double x2 = x1 + longueur;
+        double y2 = y1;
+        double x3 = (x1 + x2) / 2.0;
+        double y3 = y1 + (Math.sqrt(3) * longueur / 2);
+
+        figures.add(new LineFigure((int)x1,(int) y1, Color.black,(int) x2, (int) y2));
+        figures.add(new LineFigure((int)(x1),(int) (y1), Color.black, (int) x3, (int) y3));
+        figures.add(new LineFigure((int)(x2),(int) (y2), Color.black,(int) x3, (int) y3));
+
+        triangle(x1, y1, longueur / 2.0, n + 1);
+        triangle((x1 + x2) / 2.0, (y1 + y2) / 2.0, longueur / 2.0, n + 1);
+        triangle((x1 + x3) / 2.0, (y1 + y3) / 2.0, longueur / 2.0, n + 1);
+    }
     
     public static void main(String[] args) {
-        TriangleSierpinski t = new TriangleSierpinski(600, 600, new LineFigure(150,300, Color.black, 450, 300), 5);
+        TriangleSierpinski t = new TriangleSierpinski(2048, 2048, new LineFigure(50, 10, Color.black, 2000, 10), 10);
         try {
             t.creerFractalesSvg();
         } catch (IOException e) {
