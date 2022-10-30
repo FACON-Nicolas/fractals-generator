@@ -61,7 +61,15 @@ public class LineFigure extends AbstractFigure {
 
     @Override
     public String getSVG() {
-        return "<line x1=\""+this.getX()+"\" y1=\""+this.getY()+"\" x2=\""+this.getX2()+"\" y2=\""+this.getY2()+"\" fill=\"" + "rgb("+ color.getRed() + ", " + color.getGreen() + ", " + color.getBlue() + ")"+ "\"/>";
+        return "<line x1=\""+this.getX()+"\" y1=\""+this.getY()+"\" x2=\""+this.getX2()+"\" y2=\""+this.getY2()+"\" stroke=\"" + "rgb("+ color.getRed() + ", " + color.getGreen() + ", " + color.getBlue() + ")"+ "\"/>";
+    }
+    
+    
+    /**
+     * 
+     */
+    public int getLongueur() {
+        return (int) x2 - getX();
     }
 
 }
