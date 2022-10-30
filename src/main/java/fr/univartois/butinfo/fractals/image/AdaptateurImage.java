@@ -23,8 +23,15 @@ import javax.imageio.ImageIO;
  */
 public class AdaptateurImage implements IFractalImage {
     
+    /**
+     * Une image.
+     */
     private final BufferedImage image;
     
+    /**
+     * Crée une nouvelle instance de AdaptateurImage.
+     * @param image Une image.
+     */
     public AdaptateurImage(BufferedImage image) {
         this.image = image;
     }

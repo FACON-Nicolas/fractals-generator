@@ -20,16 +20,20 @@ import fr.univartois.butinfo.fractals.image.Pixel;
  */
 public class PlanComplexTranslationDecorator extends PlanComplexDecorator {
 
+    /**
+     * Un nombre complex.
+     */
     private final IComplex constante;
     
     /**
      * Crée une nouvelle instance de PlanComplexTranslationDecorator.
      * 
-     * @param plan
+     * @param plan Un plan complex.
      * 
-     * @param width
+     * @param width La largeur du plan.
      * 
-     * @param height
+     * @param height La hauteur du plan.
+     * @param constante Un nombre complexe constant.
      */
     protected PlanComplexTranslationDecorator(IPlanComplex plan, int width, int height, IComplex constante) {
         super(plan, width, height);

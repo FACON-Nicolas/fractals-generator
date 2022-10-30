@@ -14,14 +14,24 @@ import fr.univartois.butinfo.fractals.image.Pixel;
 /**
  * Le type PlanComplexDecorator
  *
- * @author nicolas
+ * @author Nicolas
  *
  * @version 0.1.0
  */
 public abstract class PlanComplexDecorator implements IPlanComplex {
     
+    /**
+     * Un plan complexe.
+     */
     protected IPlanComplex plan;
+    /**
+     * La largeur du plan.
+     */
+     
     private int width;
+    /**
+     * La hauteur du plan.
+     */
     private int height;
     
     /**

@@ -14,7 +14,7 @@ import fr.univartois.butinfo.fractals.image.Pixel;
 /**
  * Le type IplanComplex
  *
- * @author nicolas
+ * @author Nicolas
  *
  * @version 0.1.0
  */

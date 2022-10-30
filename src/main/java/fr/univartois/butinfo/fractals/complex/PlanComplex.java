@@ -56,6 +56,12 @@ public class PlanComplex implements IPlanComplex {
     }
 
     @Override
+    /**
+     * Cette méthode permet de déterminer a quel pixel correspond un nombre complexe.
+     * @param complex un complexe.
+     * @param fractalImage une image de fractale.
+     * @return un pixel.
+     */
     public Pixel asPixel(IComplex complex, IFractalImage fractalImage){
         int x = (int) (- complex.getImaginaryPart() + (height / 2.0) - 0.5);
         int y = (int) (complex.getRealPart() + (width / 2.0) - 0.5);
@@ -65,6 +71,12 @@ public class PlanComplex implements IPlanComplex {
     }
 
     @Override
+    /**
+     * Cette méthode permet de déterminer a quel pixel correspond un point du plan.
+     * @param point un point du plan.
+     * @param fractalImage une image de fractale.
+     * @return un pixel.
+     */
     public Pixel asPixel(IPoint point, IFractalImage fractalImage){
         int x = (int) (- point.getX() + (height / 2.0) - 0.5);
         int y = (int) (point.getY() + (width / 2.0) - 0.5);

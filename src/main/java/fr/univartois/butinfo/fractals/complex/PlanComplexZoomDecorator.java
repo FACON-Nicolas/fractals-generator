@@ -24,9 +24,9 @@ public class PlanComplexZoomDecorator extends PlanComplexDecorator {
     
     /**
      * Crée une nouvelle instance de PlanComplexZoomDecorator.
-     * @param plan
-     * @param width
-     * @param height
+     * @param plan Un plan complexe.
+     * @param width La largeur du plan.
+     * @param height La hauteur du plan.
      */
     public PlanComplexZoomDecorator(double constante, IPlanComplex plan, int width, int height) {
         super(plan, width, height);
