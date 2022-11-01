@@ -2,6 +2,13 @@ package fr.univartois.butinfo.fractals.complex;
 
 import java.util.Objects;
 
+/**
+ * Permet de générer un complexe.
+ *
+ * @author Arnaud
+ *
+ * @version 0.1.0
+ */
 public class Complex implements IComplex{
 
     /**
@@ -14,6 +21,11 @@ public class Complex implements IComplex{
      */
     private final double imaginaryPart;
 
+    /**
+     * Crée une nouvelle instance de Complex.
+     * @param realPart Partie réelle du complex.
+     * @param imaginaryPart Partie imaginaire du complex.
+     */
     public Complex(double realPart, double imaginaryPart) {
         this.realPart = realPart;
         this.imaginaryPart = imaginaryPart;

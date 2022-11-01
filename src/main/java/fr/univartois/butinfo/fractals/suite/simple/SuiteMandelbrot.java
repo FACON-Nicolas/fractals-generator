@@ -22,10 +22,24 @@ import fr.univartois.butinfo.fractals.suite.simple.SuiteIterator;
  */
 public class SuiteMandelbrot implements IStrategieSuite, Iterable<IComplex> {
     
+    /**
+     * Un complex.
+     */
     private IComplex z;
+    /**
+     * Le nombre maximum d'itérations.
+     */
     private int maxIteration;
+    /**
+     * Le premier terme de la suite.
+     */
     private IComplex premierTerme;
     
+    /**
+     * Crée une nouvelle instance de SuiteMandelbrot.
+     * @param z Un complexe.
+     * @param maxIteration Le nombre maximum d'itérations.
+     */
     public SuiteMandelbrot(IComplex z, int maxIteration) {
         this.z = z;
         this.maxIteration = maxIteration;

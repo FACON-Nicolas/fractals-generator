@@ -17,12 +17,24 @@ package fr.univartois.butinfo.fractals.figure;
  */
 public class FigureTransformScaleDecorator extends FigureDecorator {
     
+    /**
+     * La largeur du zoom.
+     */
     private double scale;
     
+    /**
+     * Crée une nouvelle instance de FigureTransformScaleDecorator.
+     * @param figure Une figure.
+     */
     public FigureTransformScaleDecorator(IFigure figure) {
         this(figure, 1);
     }
     
+    /**
+     * Crée une nouvelle instance de FigureTransformScaleDecorator.
+     * @param figure Une figure.
+     * @param scale Une largeur de zoom.
+     */
     public FigureTransformScaleDecorator(IFigure figure, double scale) {
         super(figure);
         this.scale = scale;
