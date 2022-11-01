@@ -263,14 +263,6 @@ public class ImageBuilder {
 
                 while (it.hasNext()) it.next();
                 image.setColor(j, i, palette.palette(maxIt, it.getNbInteration()));
-
-                if ("triangle".equalsIgnoreCase(nom)) {
-                    TriangleSierpinski.main(null);
-                } else if ("tapis".equalsIgnoreCase(nom)) {
-                    TapisSierpinski.main(null);
-                } else if ("tapisDiagonale".equalsIgnoreCase(nom)) {
-                    TapisSierpinskiDiagonale.main(null);
-                }
             }
         }
         image.saveAs(path);

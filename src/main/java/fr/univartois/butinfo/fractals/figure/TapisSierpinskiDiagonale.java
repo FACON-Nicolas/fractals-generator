@@ -48,14 +48,15 @@ public class TapisSierpinskiDiagonale extends AbstractFractalesSVG {
             }
         } return file;
     }
-    
+
+    public static void creation(int width, int iteration, String outputFile){
+        TapisSierpinskiDiagonale t = new TapisSierpinskiDiagonale(width, width, new FigureCarre(0, 0, Color.black, width), iteration);
+        t.creerFractalesSvg(outputFile);
+    }
+
     public static void main(String[] args) {
         TapisSierpinskiDiagonale t = new TapisSierpinskiDiagonale(2048, 2048, new FigureCarre(0, 0, Color.black, 2048), 6);
-        try {
-            t.creerFractalesSvg();
-        } catch (IOException e) {
-            System.err.println("oops");
-        }
+        t.creerFractalesSvg("file.svg");
     }
     
 
