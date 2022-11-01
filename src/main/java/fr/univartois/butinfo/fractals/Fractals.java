@@ -32,6 +32,9 @@ import fr.univartois.butinfo.couleurs.PaletteBleue;
 import fr.univartois.butinfo.couleurs.PaletteJaune;
 import fr.univartois.butinfo.couleurs.PaletteRose;
 import fr.univartois.butinfo.fractals.complex.Point;
+import fr.univartois.butinfo.fractals.figure.TapisSierpinski;
+import fr.univartois.butinfo.fractals.figure.TapisSierpinskiDiagonale;
+import fr.univartois.butinfo.fractals.figure.TriangleSierpinski;
 import fr.univartois.butinfo.fractals.image.ImageBuilder;
 
 /**
@@ -176,10 +179,21 @@ public final class Fractals {
                 usage();
                 System.exit(0);
             }
-            
-            scale = Double.parseDouble(scaleString);
-            focusX = Double.parseDouble(focusXString);
-            focusY = Double.parseDouble(focusYString);
+
+            String[] nomsFractalsSansScaleOuCoordonnes = {"triangle", "tapis", "tapisDiagonale"};
+
+            boolean besoinScaleCoordonnes = true;
+            for (String nomFractalsSansScaleOuCoordonnes : nomsFractalsSansScaleOuCoordonnes) {
+                if (nomFractalsSansScaleOuCoordonnes.equalsIgnoreCase(fractaleName)) {
+                    besoinScaleCoordonnes = false;
+                    break;
+                }
+            }
+            if (besoinScaleCoordonnes){
+                scale = Double.parseDouble(scaleString);
+                focusX = Double.parseDouble(focusXString);
+                focusY = Double.parseDouble(focusYString);
+            }
 
 
         } catch (CliUsageException | CliOptionDefinitionException e) {
@@ -228,7 +242,16 @@ public final class Fractals {
     public static void main(String[] args) {
         Fractals fractals = new Fractals();
         fractals.parseCliArguments(args);
-        fractals.buildFractal();
+
+        if ("triangle".equalsIgnoreCase(fractals.fractaleName)) {
+            TriangleSierpinski.creation(fractals.width, fractals.height, fractals.nbIterations, fractals.outputFile);
+        } else if ("tapis".equalsIgnoreCase(fractals.fractaleName)) {
+            TapisSierpinski.creation(fractals.width, fractals.nbIterations, fractals.outputFile);
+        } else if ("tapisDiagonale".equalsIgnoreCase(fractals.fractaleName)) {
+            TapisSierpinskiDiagonale.creation(fractals.width, fractals.nbIterations, fractals.outputFile);
+        } else {
+            fractals.buildFractal();
+        }
     }
 
 }

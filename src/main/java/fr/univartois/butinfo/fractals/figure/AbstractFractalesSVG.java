@@ -49,9 +49,9 @@ public abstract class AbstractFractalesSVG {
 	 * Cette méthode permet d'ouvrir ou de créer et d'ouvrir le fichier dans lequel sera généré la fractale géométrique.
 	 * @return obj Le nouveau fichier svg.
 	 */
-	protected Writer ouvrirFichier() {
+	protected Writer ouvrirFichier(String outputFile) {
 		try {
-			PrintWriter  obj = new PrintWriter("file.svg");
+			PrintWriter  obj = new PrintWriter(outputFile);
 			return obj;
 		} catch (FileNotFoundException e) {
 			System.err.println("erreur d'ouverture");
@@ -95,7 +95,7 @@ public abstract class AbstractFractalesSVG {
 	 * @param iterations Le nombre d'itérations de la fractale.
 	 * @return file , le fichier passé en paramètre avec la fractale générée dedans.
 	 */
-	public abstract Writer formerFractale(Writer file, IFigure figure,int iterations);
+	public abstract Writer formerFractale(Writer file, IFigure figure,int iterations) throws IOException;
 	
 	/**
 	 * La méthode permettant de fermer le fichier SVG.
@@ -135,15 +135,19 @@ public abstract class AbstractFractalesSVG {
 	/**
 	 * Méthode permettant de générer l'intégralité du fichier SVG du début à la fin. 
 	 */
-	public final void creerFractalesSvg() {
-		Writer writer = ouvrirFichier();
+	public final void creerFractalesSvg(String outputFile) {
+		Writer writer = ouvrirFichier(outputFile);
 		writer = ecrireEnTete(writer);
 		try {
 			writer = creerFormesBase(writer,figure);
 		} catch (IOException e) {
 			System.err.println("problème dans la création de la forme de base");
 		}
-		writer = formerFractale(writer,figure,0);
+		try {
+			writer = formerFractale(writer,figure,0);
+		} catch (IOException e) {
+			System.err.println("problème dans la formation du fractale");
+		}
 		writer =fermerSvg(writer);
 		fermerFichier(writer);
 	}

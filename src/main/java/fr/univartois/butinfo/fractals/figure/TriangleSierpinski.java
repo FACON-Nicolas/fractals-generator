@@ -61,14 +61,15 @@ public class TriangleSierpinski extends AbstractFractalesSVG {
         triangle((x1 + x2) / 2.0, (y1 + y2) / 2.0, longueur / 2.0, n + 1);
         triangle((x1 + x3) / 2.0, (y1 + y3) / 2.0, longueur / 2.0, n + 1);
     }
+
+    public static void creation(int width, int height, int iteration, String outputFile){
+        TriangleSierpinski t = new TriangleSierpinski(width, height, new LineFigure(50, 10, Color.black, 2000, 10), iteration);
+        t.creerFractalesSvg(outputFile);
+    }
     
     public static void main(String[] args) {
         TriangleSierpinski t = new TriangleSierpinski(2048, 2048, new LineFigure(50, 10, Color.black, 2000, 10), 10);
-        try {
-            t.creerFractalesSvg();
-        } catch (IOException e) {
-            System.err.println("oops");
-        }
+        t.creerFractalesSvg("file.svg");
     }
 
 }

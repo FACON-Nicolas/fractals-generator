@@ -38,7 +38,6 @@ public class TapisSierpinski extends AbstractFractalesSVG {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (!(i == j && i == 1)) {
-                    System.out.println("x: " + j + " y: " + i);
                     IFigure fig = new FigureCarre(x + (j * width / 3), y + (i * width / 3), Color.black, width / 3);
                     creerFormesBase(file, fig);
                     formerFractale(file, fig, iterations+1);
@@ -50,14 +49,15 @@ public class TapisSierpinski extends AbstractFractalesSVG {
         } return file;
         
     }
+
+    public static void creation(int width, int iteration, String outputFile){
+        TapisSierpinski t = new TapisSierpinski(width, width, new FigureCarre(0, 0, Color.black, width), iteration);
+        t.creerFractalesSvg(outputFile);
+    }
     
     public static void main(String[] args) {
         TapisSierpinski t = new TapisSierpinski(2048, 2048, new FigureCarre(0, 0, Color.black, 2048), 6);
-        try {
-            t.creerFractalesSvg();
-        } catch (IOException e) {
-            System.err.println("oops");
-        }
+        t.creerFractalesSvg("file.svg");
     }
 
 }
